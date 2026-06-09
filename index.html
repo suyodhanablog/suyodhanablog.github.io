@@ -1,15 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="light">
 <head>
-  <title>My Blog</title>
-  <style>
-    body { font-family: Georgia, serif; max-width: 680px;
-           margin: 60px auto; padding: 0 20px; font-size: 18px; }
-    h1 { font-size: 36px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suyodhana</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>Hello World</h1>
-  <p>My blog is live!</p>
+
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition">
+
+<!-- Navbar -->
+<header class="flex justify-between items-center p-6 max-w-5xl mx-auto">
+  <h1 class="text-2xl font-bold">Suyodhana</h1>
+
+  <button onclick="toggleTheme()" class="px-3 py-1 border rounded">
+    🌙 / ☀️
+  </button>
+</header>
+
+<!-- Hero -->
+<section class="text-center py-20">
+  <h2 class="text-4xl font-bold">Politics • Education • Nationalism</h2>
+  <p class="mt-4 text-gray-600 dark:text-gray-300">
+    Essays, ideas, and reflections on society and identity.
+  </p>
+</section>
+
+<!-- Featured Posts -->
+<section class="max-w-5xl mx-auto px-6">
+  <h3 class="text-xl font-semibold mb-4">Featured Posts</h3>
+
+  <div class="grid md:grid-cols-2 gap-4">
+
+    <a href="posts/post1.html" class="p-4 border rounded hover:shadow">
+      <h4 class="font-bold">The Idea of National Identity</h4>
+      <p class="text-sm text-gray-500">Read more →</p>
+    </a>
+
+    <a href="posts/post2.html" class="p-4 border rounded hover:shadow">
+      <h4 class="font-bold">Education and Society</h4>
+      <p class="text-sm text-gray-500">Read more →</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="max-w-xl mx-auto text-center mt-20 p-6 border rounded">
+  <h3 class="text-xl font-semibold">Subscribe</h3>
+  <p class="text-sm text-gray-500 mb-4">Get new writings via email</p>
+
+  <form action="https://formspree.io/f/your-id" method="POST">
+    <input type="email" name="email" placeholder="Your email"
+      class="border p-2 w-full mb-3 rounded" required />
+    <button class="bg-black text-white px-4 py-2 rounded w-full">
+      Subscribe
+    </button>
+  </form>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
