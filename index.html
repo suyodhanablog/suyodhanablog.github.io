@@ -159,7 +159,7 @@
       display: block;
     }
 
-    /* ── 🆕 New Home Page UI Styles ───────────────────────── */
+    /* ── Home Page UI Styles ───────────────────────── */
     .home-intro {
       font-size: 1.25rem;
       font-weight: 700;
@@ -198,7 +198,7 @@
     }
 
     .home-inline-link {
-      color: #0000ee; /* স্ক্রিনশটের মতো ক্লাসিক নীল লিংক */
+      color: #0000ee;
       text-decoration: underline;
       text-underline-offset: 2px;
       text-decoration-thickness: 1px;
@@ -292,7 +292,54 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ── Essay List Layout (Clean Minimalist) ── */
+    /* ── 🆕 NOTES PAGE UI STYLES (Based on 1000044472_2.png) ── */
+    .notes-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .note-row {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px dashed #d3d3d3; /* স্ক্রিনশটের মতো ডটেড/ড্যাশড বর্ডার */
+    }
+
+    .note-meta {
+      width: 80px;
+      flex-shrink: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: #777777;
+      text-transform: capitalize;
+    }
+
+    .note-meta span {
+      display: block;
+    }
+
+    .note-content-box {
+      flex: 1;
+      padding-left: 1rem;
+    }
+
+    .note-title-link {
+      font-family: "Georgia", serif; /* স্ক্রিনশটের ক্লাসিক সেরিফ ভাইব */
+      font-size: 1.15rem;
+      color: #0000ee; /* ট্র্যাডিশনাল নীল লিংক রঙ */
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      line-height: 1.35;
+      display: inline-block;
+    }
+
+    .note-title-link:hover {
+      color: #0000aa;
+    }
+
+    /* ── Essay List Layout ── */
     .essay-list {
       list-style: none;
       padding: 0;
@@ -328,7 +375,6 @@
       text-overflow: ellipsis;
       flex: 1;
       min-width: 0;
-      font-family: var(--font);
       transition: color 0.12s ease;
     }
 
@@ -341,7 +387,7 @@
       font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
     }
 
-    /* ── Project Layout (Ultra-Minimal List UI) ── */
+    /* ── Project Layout ── */
     .project-list {
       list-style-type: disc;
       padding-left: 1.2rem;
@@ -365,14 +411,13 @@
       text-underline-offset: 2px;
       text-decoration-thickness: 1px;
       transition: color 0.12s ease;
-      word-wrap: break-word;
     }
 
     .project-link:hover {
       color: #1557b0;
     }
 
-    /* ── About Layout (Clean Specs Sheet UI) ─────────────── */
+    /* ── About Layout ─────────────── */
     .about-text {
       font-size: 0.95rem;
       line-height: 1.65;
@@ -426,17 +471,7 @@
       font-size: 0.85rem;
       font-family: var(--font);
       outline: none;
-      transition: border-color 0.15s ease;
       border-radius: 0;
-      appearance: none;
-    }
-
-    .subscribe-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .subscribe-input:focus {
-      border-color: #383838;
     }
 
     .subscribe-btn {
@@ -445,11 +480,9 @@
       color: var(--text-dim);
       padding: 0.5rem 1.1rem;
       font-size: 0.85rem;
-      font-family: var(--font);
       cursor: pointer;
       white-space: nowrap;
       border-radius: 0;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
 
     .subscribe-btn:hover {
@@ -487,34 +520,15 @@
     .footer-link {
       font-size: 0.78rem;
       color: var(--text-muted);
-      transition: color 0.15s ease;
-    }
-
-    .footer-link:hover {
-      color: var(--text-dim);
     }
 
     /* ── Responsive ───────────────────────────────────────── */
     @media (min-width: 600px) {
       :root { --px: 2rem; }
-      .post-title { font-size: 0.9625rem; }
     }
-
-    @media (min-width: 900px) {
-      :root { --px: 2.5rem; }
-      .post-link { gap: 2rem; }
-    }
-
     @media (max-width: 380px) {
-      :root { --px: 1.1rem; }
-      .post-link { gap: 0.75rem; }
-      .subscribe-row { flex-direction: column; max-width: 100%; }
-      .subscribe-input { border-right: 1px solid var(--border); border-bottom: none; }
-      .subscribe-btn { text-align: center; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .site-brand::after { animation: none; opacity: 0.4; }
+      .note-row { flex-direction: row; }
+      .note-meta { width: 65px; }
     }
   </style>
 </head>
@@ -523,16 +537,17 @@
   <!-- ── Site Header ──────────────────────────────────── -->
   <header class="site-header">
     <a href="#home" onclick="switchPage('home')" class="site-brand" style="font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;">SUYODHANA</a>
-    <button class="theme-btn" aria-label="View theme info">Theme Info</button>
+    <button class="theme-btn">Theme Info</button>
   </header>
 
-  <!-- ── Navigation ───────────────────────────────────── -->
+  <!-- ── Navigation Bar (Added NOTES) ───────────────────────── -->
   <nav class="site-nav" aria-label="Main">
     <ul class="nav-list">
       <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#blog" class="nav-link" onclick="switchPage('blog')">BLOG</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#eassy" class="nav-link" onclick="switchPage('eassy')">EASSY</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#project" class="nav-link" onclick="switchPage('project')">PROJECT</a></li>
+      <li class="nav-item"><span class="nav-slash">/</span><a href="#notes" class="nav-link" onclick="switchPage('notes')">NOTES</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#about" class="nav-link" onclick="switchPage('about')">ABOUT</a></li>
     </ul>
   </nav>
@@ -540,7 +555,7 @@
   <!-- ── Main Content Area ──────────────────────────────── -->
   <main>
 
-    <!-- 🏠 NEW HOME PAGE (Your Requested Screen-Inspired UI Layout) -->
+    <!-- 🏠 HOME PAGE -->
     <section id="home-page" class="content-page active-page">
       <h1 class="home-intro">Hello, I'm a law student and digital space designer.</h1>
       <p class="home-subintro">Welcome to my personal architecture. Here I blend text compilation, minimal UI frameworks, and analytical observations into a clean static web environment.</p>
@@ -552,8 +567,8 @@
           <span class="home-desc-text">A detailed breakdown of layout fluidity and computational metrics across digital viewports.</span>
         </li>
         <li class="home-featured-item">
-          <a href="#eassy" onclick="switchPage('eassy')" class="home-inline-link">The Philosophy of Minimalist Digital Spaces</a>: 
-          <span class="home-desc-text">Thoughts on creating distraction-free reading environments as a cognitive necessity.</span>
+          <a href="#notes" onclick="switchPage('notes')" class="home-inline-link">Twelve years</a>: 
+          <span class="home-desc-text">Some retrospective scattered observations captured inside the personal raw ledger notes.</span>
         </li>
         <li class="home-featured-item">
           <a href="#project" onclick="switchPage('project')" class="home-inline-link">Suyodhana Core UI Blueprint</a>: 
@@ -567,6 +582,7 @@
           <div>• View entire technical archive in <span class="home-nav-trigger" onclick="switchPage('blog')">BLOG Section →</span></div>
           <div>• Browse minimal essays inside <span class="home-nav-trigger" onclick="switchPage('eassy')">EASSY Archive →</span></div>
           <div>• Check open source builds at <span class="home-nav-trigger" onclick="switchPage('project')">PROJECT List →</span></div>
+          <div>• Read raw personal insights at <span class="home-nav-trigger" onclick="switchPage('notes')">NOTES Log →</span></div>
           <div>• Read specifications on the <span class="home-nav-trigger" onclick="switchPage('about')">ABOUT Sheet →</span></div>
         </div>
       </div>
@@ -583,30 +599,6 @@
               <span class="post-date">04/11</span>
             </a>
           </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Mathematical Concepts: Fourier Series and Their Real-World Applications</span>
-              <span class="post-date">13/02</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="year-group">
-        <h2 class="year-heading">2024</h2>
-        <ul class="post-list">
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Building Scalable APIs with Node.js and Express</span>
-              <span class="post-date">03/07</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Beyond REST: Exploring GraphQL for Modern Web Applications</span>
-              <span class="post-date">10/04</span>
-            </a>
-          </li>
         </ul>
       </div>
     </section>
@@ -620,24 +612,6 @@
             <span class="essay-date">2026/06/09</span>
           </a>
         </li>
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Back to Overcast</span>
-            <span class="essay-date">2026/06/04</span>
-          </a>
-        </li>
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">The Philosophy of Minimalist Digital Spaces</span>
-            <span class="essay-date">2025/10/24</span>
-          </a>
-        </li>
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Why Typography Matters in Technical Writing</span>
-            <span class="essay-date">2025/08/12</span>
-          </a>
-        </li>
       </ul>
     </section>
 
@@ -646,59 +620,107 @@
       <ul class="project-list">
         <li class="project-item">
           <span class="project-date">April 9th, 2026:</span> 
-          <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on low layout shift and distraction-free documentation reading for multi-device platforms</a>
-        </li>
-        <li class="project-item">
-          <span class="project-date">December 30th, 2025:</span> 
-          <a href="#" class="project-link">Pluto Analytics Extension with open-source plotting algorithms designed primarily for real-time performance tracking data</a>
-        </li>
-        <li class="project-item">
-          <span class="project-date">November 20th, 2025:</span> 
-          <a href="#" class="project-link">Static Engine Generator — A lightweight compilation workflow built to render complex nested static file structures seamlessly across edge networks</a>
+          <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on low layout shift</a>
         </li>
       </ul>
     </section>
 
-    <!-- 4️⃣ ABOUT PAGE -->
+    <!-- 📝 4️⃣ NEW NOTES PAGE (Exact layout from your screenshot metadata alignment) -->
+    <section id="notes-page" class="content-page">
+      <div class="notes-container">
+        
+        <!-- Note Row 1 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>May</span>
+            <span>08 ,</span>
+            <span>2026</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">Twelve years</a>
+          </div>
+        </div>
+
+        <!-- Note Row 2 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>Jan</span>
+            <span>11 ,</span>
+            <span>2026</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">Goodbye 2025</a>
+          </div>
+        </div>
+
+        <!-- Note Row 3 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>Jan</span>
+            <span>08 ,</span>
+            <span>2023</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">It's Just a Function</a>
+          </div>
+        </div>
+
+        <!-- Note Row 4 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>Aug</span>
+            <span>06 ,</span>
+            <span>2022</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">Batch no. 2 return statement</a>
+          </div>
+        </div>
+
+        <!-- Note Row 5 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>Jul</span>
+            <span>25 ,</span>
+            <span>2022</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">Building a tiny little broken calculator with parser combinators</a>
+          </div>
+        </div>
+
+        <!-- Note Row 6 -->
+        <div class="note-row">
+          <div class="note-meta">
+            <span>Jul</span>
+            <span>20 ,</span>
+            <span>2022</span>
+          </div>
+          <div class="note-content-box">
+            <a href="#" class="note-title-link">Makin' wavs with Zig</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5️⃣ ABOUT PAGE -->
     <section id="about-page" class="content-page">
       <div class="about-text">
-        <p>Hello! Welcome to my personal digital notebook. I am a passionate creator who loves exploring the intersecting lines between elegant web architectures, clean designs, and timeless analytical philosophies.</p>
+        <p>Hello! Welcome to my personal digital notebook.</p>
       </div>
-      <h2 class="year-heading" style="border-bottom: 1px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1rem;">Specifications</h2>
-      <table class="info-table">
-        <tr>
-          <td>Focus Areas</td>
-          <td>Clean UI Design, Core Scripting, Microservices</td>
-        </tr>
-        <tr>
-          <td>Interests</td>
-          <td>Data Analytics, Geometry, Minimalism</td>
-        </tr>
-      </table>
     </section>
 
   </main>
 
   <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
-    <p class="subscribe-eyebrow">Stay Updated</p>
-    <div class="subscribe-row">
-      <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
-      <button class="subscribe-btn" type="button">Subscribe</button>
-    </div>
-    <p class="subscribe-note">No spam. Unsubscribe any time.</p>
-
     <div class="footer-meta">
       <span class="footer-copy">© 2026 Suyodhana</span>
-      <div class="footer-links">
-        <a href="#" class="footer-link">Facebook</a>
-        <a href="#" class="footer-link">Instagram</a>
-        <a href="#" class="footer-link">Twitter</a>
-      </div>
     </div>
   </footer>
 
-  <!-- ── ⚡ JavaScript Routing Engine ────────────────────── -->
+  <!-- ── JavaScript Routing Engine ────────────────────── -->
   <script>
     function switchPage(targetPageId) {
       const pages = document.querySelectorAll('.content-page');
@@ -724,10 +746,10 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const currentHash = window.location.hash.replace('#', '').toLowerCase();
-      if (['home', 'blog', 'eassy', 'project', 'about'].includes(currentHash)) {
+      if (['home', 'blog', 'eassy', 'project', 'notes', 'about'].includes(currentHash)) {
         switchPage(currentHash);
       } else {
-        switchPage('home'); // ডিফল্ট হোমপেইজ লোড হবে
+        switchPage('home');
       }
     });
   </script>
