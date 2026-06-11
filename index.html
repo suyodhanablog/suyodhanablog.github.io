@@ -270,32 +270,37 @@
       font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace; /* ক্লিন টাইপরাইটার ফন্ট */
     }
 
-    /* ── Project Layout (Minimal Grid UI) ────────────────── */
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+       /* ── 🆕 New Updated Project Layout (Ultra-Minimal List UI) ── */
+    .project-list {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      margin: 0;
     }
-    .project-box {
-      border: 1px solid #e5e5e5;
-      padding: 1.5rem;
-      border-radius: 3px;
-      transition: border-color 0.2s, transform 0.2s;
+
+    .project-item {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0.85rem; /* প্রতিটি প্রজেক্টের মাঝে গ্যাপ */
+      color: #333333; /* তারিখ ও কোলনের প্লেইন টেক্সট কালার */
     }
-    .project-box:hover {
-      border-color: var(--text);
-      transform: translateY(-1px);
+
+    .project-date {
+      font-weight: 400;
     }
-    .project-box h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
+
+    .project-link {
+      color: #1a73e8; /* স্ক্রিনশটের মতো স্ট্যান্ডার্ড ক্লাসিক লিংক ব্লু কালার */
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      transition: color 0.12s ease;
+      word-wrap: break-word; /* বড় টেক্সট হলেও লাইনে ভেঙে যাবে, কাটবে না */
     }
-    .project-box p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
+
+    .project-link:hover {
+      color: #1557b0; /* হোভার করলে কিছুটা গাঢ় নীল হবে */
     }
+
 
     /* ── About Layout (Clean Specs Sheet UI) ─────────────── */
     .about-text {
@@ -649,22 +654,28 @@
       </ul>
     </section>
 
+        <!-- 3️⃣ PROJECT PAGE (🆕 Ultra-Minimal Bullet List View) -->
     <section id="project-page" class="content-page">
-      <div class="project-grid">
-        <div class="project-box">
-          <h3>Suyodhana Core UI</h3>
-          <p>A CSS design architecture focused on low layout shift and distraction-free documentation reading.</p>
-        </div>
-        <div class="project-box">
-          <h3>Pluto Analytics Extension</h3>
-          <p>A reactive open-source plotting algorithm designed primarily for performance tracking data.</p>
-        </div>
-        <div class="project-box">
-          <h3>Static Engine Generator</h3>
-          <p>A lightweight compilation workflow built to render complex nested static file structures seamlessly.</p>
-        </div>
-      </div>
+      <ul class="project-list">
+        
+        <li class="project-item">
+          <span class="project-date">April 9th, 2026:</span> 
+          <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on low layout shift and distraction-free documentation reading for multi-device platforms</a>
+        </li>
+
+        <li class="project-item">
+          <span class="project-date">December 30th, 2025:</span> 
+          <a href="#" class="project-link">Pluto Analytics Extension with open-source plotting algorithms designed primarily for real-time performance tracking data</a>
+        </li>
+
+        <li class="project-item">
+          <span class="project-date">November 20th, 2025:</span> 
+          <a href="#" class="project-link">Static Engine Generator — A lightweight compilation workflow built to render complex nested static file structures seamlessly across edge networks</a>
+        </li>
+
+      </ul>
     </section>
+
 
     <section id="about-page" class="content-page">
       <div class="about-text">
