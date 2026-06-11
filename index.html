@@ -153,15 +153,15 @@
       padding: 2.75rem var(--px) 5rem;
     }
 
-    /* Dynamic Pages Display Settings */
+    /* Dynamic Pages View Controls */
     .content-page {
-      display: none; /* ডিফল্টভাবে সব হাইড থাকবে */
+      display: none; /* ডিফল্টভাবে পেজগুলো হাইড থাকবে */
     }
     .content-page.active-page {
-      display: block; /* শুধু একটিভ পেজটি দেখাবে */
+      display: block; /* শুধুমাত্র একটিভ পেজটি স্ক্রিনে দেখাবে */
     }
 
-    /* ── Year Group (For Blog) ────────────────────────────── */
+    /* ── Year Group (For Blog Archive) ────────────────────── */
     .year-group + .year-group {
       margin-top: 2.75rem;
     }
@@ -221,49 +221,75 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ── 🆕 New UI Designs for categories ────────────────── */
-    
-    /* 1. Essay Layout (Editorial/Serif feel) */
-    .essay-card {
-      margin-bottom: 3rem;
-    }
-    .essay-card h3 {
-      font-size: 1.4rem;
-      font-family: Georgia, serif;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    .essay-card p {
-      font-size: 0.95rem;
-      color: #333;
-      line-height: 1.6;
-      font-family: Georgia, serif;
-    }
-    .essay-meta {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-bottom: 0.5rem;
+    /* ── 🆕 New Updated Essay List Layout (Clean Minimalist) ── */
+    .essay-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    /* 2. Project Layout (Minimal Cards Grid) */
+    .essay-item {
+      display: block;
+    }
+
+    .essay-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.65rem 0;
+      gap: 1.25rem;
+      transition: color 0.12s ease;
+    }
+
+    .essay-link:hover .essay-title {
+      color: #000000; /* হোভার করলে কুচকুচে কালো হবে */
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+
+    .essay-title {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: #b54d3b; /* স্ক্রিনশটের মতো টেরাকোটা/লালচে মিনিমাল কালার টোন */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font);
+      transition: color 0.12s ease;
+    }
+
+    .essay-date {
+      font-size: 0.8125rem;
+      color: #a4a4a4; /* স্ক্রিনশটের মতো ডিলুটেড বা হালকা ডেট কালার */
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.01em;
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace; /* ক্লিন টাইপরাইটার ফন্ট */
+    }
+
+    /* ── Project Layout (Minimal Grid UI) ────────────────── */
     .project-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
     .project-box {
-      border: 1px solid #e0e0e0;
+      border: 1px solid #e5e5e5;
       padding: 1.5rem;
-      border-radius: 4px;
-      transition: transform 0.2s;
+      border-radius: 3px;
+      transition: border-color 0.2s, transform 0.2s;
     }
     .project-box:hover {
-      transform: translateY(-2px);
       border-color: var(--text);
+      transform: translateY(-1px);
     }
     .project-box h3 {
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
     .project-box p {
       font-size: 0.88rem;
@@ -271,22 +297,22 @@
       line-height: 1.5;
     }
 
-    /* 3. About Layout (Clean Info list) */
+    /* ── About Layout (Clean Specs Sheet UI) ─────────────── */
     .about-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: #222;
-      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #111111;
+      margin-bottom: 2.5rem;
     }
     .info-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1.5rem;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
     .info-table td {
-      padding: 0.6rem 0;
-      border-bottom: 1px solid #f0f0f0;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #f3f3f3;
     }
     .info-table td:first-child {
       font-weight: 600;
@@ -413,6 +439,7 @@
       .subscribe-btn { text-align: center; }
     }
 
+    /* ── Reduced motion ───────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .site-brand::after { animation: none; opacity: 0.4; }
     }
@@ -420,13 +447,11 @@
 </head>
 <body>
 
-  <!-- ── Site Header ──────────────────────────────────── -->
   <header class="site-header">
     <a href="#blog" onclick="switchPage('blog')" class="site-brand" style="font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;">SUYODHANA</a>
     <button class="theme-btn" aria-label="View theme info">Theme Info</button>
   </header>
 
-  <!-- ── Navigation ───────────────────────────────────── -->
   <nav class="site-nav" aria-label="Main">
     <ul class="nav-list">
       <li class="nav-item"><a href="#blog" class="nav-link active" onclick="switchPage('blog')">BLOG</a></li>
@@ -436,12 +461,9 @@
     </ul>
   </nav>
 
-  <!-- ── Main Content Area ──────────────────────────────── -->
   <main>
 
-    <!-- 1️⃣ BLOG PAGE (Your Original UI Layout) -->
     <section id="blog-page" class="content-page active-page">
-      <!-- 2025 -->
       <div class="year-group">
         <h2 class="year-heading">2025</h2>
         <ul class="post-list">
@@ -460,7 +482,6 @@
         </ul>
       </div>
 
-      <!-- 2024 -->
       <div class="year-group">
         <h2 class="year-heading">2024</h2>
         <ul class="post-list">
@@ -491,7 +512,6 @@
         </ul>
       </div>
 
-      <!-- 2023 -->
       <div class="year-group">
         <h2 class="year-heading">2023</h2>
         <ul class="post-list">
@@ -522,7 +542,6 @@
         </ul>
       </div>
 
-      <!-- 2022 -->
       <div class="year-group">
         <h2 class="year-heading">2022</h2>
         <ul class="post-list">
@@ -538,25 +557,98 @@
               <span class="post-date">08/09</span>
             </a>
           </li>
+          <li class="post-item">
+            <a href="#" class="post-link">
+              <span class="post-title">Type Theory Fundamentals: A Developer's Gentle Introduction</span>
+              <span class="post-date">22/06</span>
+            </a>
+          </li>
+          <li class="post-item">
+            <a href="#" class="post-link">
+              <span class="post-title">Functional Programming Patterns in Modern JavaScript</span>
+              <span class="post-date">03/03</span>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- 2️⃣ EASSY PAGE (Editorial Serif UI Design) -->
     <section id="eassy-page" class="content-page">
-      <div class="essay-card">
-        <div class="essay-meta">October 24, 2025 • 8 min read</div>
-        <h3>The Philosophy of Minimalist Digital Spaces</h3>
-        <p>In an era dominated by hyper-stimulating user interfaces and endless streams of data, modern minimalist design has emerged not just as an aesthetic choice, but as a cognitive necessity. Creating clean code structures allows readers to interact genuinely with thoughts without distractions...</p>
-      </div>
-      <div class="essay-card">
-        <div class="essay-meta">August 12, 2025 • 12 min read</div>
-        <h3>Why Typography Matters in Technical Writing</h3>
-        <p>Typography is the silent voice of your text. A well-chosen typeface can transform a dense, highly technical scientific paper into an inviting and digestible piece of literature. Striking a balance between monospace components and beautiful layout hierarchies is an art form every web developer should master...</p>
-      </div>
+      <ul class="essay-list">
+        
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Victory is a lossy compressor</span>
+            <span class="essay-date">2026/06/09</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Back to Overcast</span>
+            <span class="essay-date">2026/06/04</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">May, 2026</span>
+            <span class="essay-date">2026/06/01</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Self-hosting our CI, three months later</span>
+            <span class="essay-date">2026/06/01</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">ccusage</span>
+            <span class="essay-date">2026/05/27</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">What matters</span>
+            <span class="essay-date">2026/05/20</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Be careful what you make easy to buy</span>
+            <span class="essay-date">2026/05/19</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Screen record more</span>
+            <span class="essay-date">2026/05/17</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">The Philosophy of Minimalist Digital Spaces</span>
+            <span class="essay-date">2025/10/24</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="#" class="essay-link">
+            <span class="essay-title">Why Typography Matters in Technical Writing</span>
+            <span class="essay-date">2025/08/12</span>
+          </a>
+        </li>
+
+      </ul>
     </section>
 
-    <!-- 3️⃣ PROJECT PAGE (Grid Cards UI Design) -->
     <section id="project-page" class="content-page">
       <div class="project-grid">
         <div class="project-box">
@@ -574,7 +666,6 @@
       </div>
     </section>
 
-    <!-- 4️⃣ ABOUT PAGE (Profile Info Layout Design) -->
     <section id="about-page" class="content-page">
       <div class="about-text">
         <p>Hello! Welcome to my personal digital notebook. I am a passionate creator who loves exploring the intersecting lines between elegant web architectures, clean designs, and timeless analytical philosophies.</p>
@@ -598,7 +689,6 @@
 
   </main>
 
-  <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
     <p class="subscribe-eyebrow">Stay Updated</p>
     <div class="subscribe-row">
@@ -622,10 +712,9 @@
     </div>
   </footer>
 
-  <!-- ── ⚡ JavaScript Routing Engine ────────────────────── -->
   <script>
     function switchPage(targetPageId) {
-      // 1. সব পেজকে ডিসপ্লে থেকে সরিয়ে দেওয়া
+      // 1. সব পেজকে ভিউ থেকে সরিয়ে দেওয়া
       const pages = document.querySelectorAll('.content-page');
       pages.forEach(page => {
         page.classList.remove('active-page');
@@ -647,11 +736,11 @@
         }
       });
 
-      // পেজ পরিবর্তন হলে যেন স্ক্রল একদম উপরে চলে আসে
+      // পেজ পরিবর্তন হলে স্ক্রল যেন একদম উপরে চলে আসে
       window.scrollTo(0, 0);
     }
 
-    // ব্রাউজারের ইউআরএল হ্যাস (#) সরাসরি টাইপ করলে যেন পেজ লোড হয় তার জন্য হ্যান্ডলার
+    // ব্রাউজারের ইউআরএল হ্যাস (#) সরাসরি টাইপ করলেও যেন নির্দিষ্ট পেজটি লোড হয়
     window.addEventListener('DOMContentLoaded', () => {
       const currentHash = window.location.hash.replace('#', '').toLowerCase();
       if (['blog', 'eassy', 'project', 'about'].includes(currentHash)) {
