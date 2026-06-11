@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUYODHANA — Politics, Culture, Nationalism</title>
+  
+  <!-- ── Google Fonts Integration for Core Typography (Image 1000044511.png) ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
   <style>
     /* ── Reset & Core Visual Variables ────────────────── */
     *, *::before, *::after {
@@ -13,23 +19,24 @@
     }
 
     :root {
-      /* Warm cream/archival paper background from image 1000044486.jpg */
       --bg:            #FFFDF6; 
       --text:          #111111; 
-      --text-dim:      #555555; 
-      --text-muted:    #777777;
+      --text-dim:      #333333; 
+      --text-muted:    #666666;
       --border:        #E2E2DF;
       
-      /* Classic Web Link Colors for general sections */
+      /* Classic Web Link Colors */
       --link-color:    #0000EE;
       --link-hover:    #0000AA;
       
-      /* Specific styling rules for the ESSAYS section (Image 1000044486.jpg) */
-      --essay-link:    #D04A02; /* The distinctive reddish-orange accent */
-      --essay-font:    ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      /* Core Serif Typography Identity */
+      --font-main-serif: 'PT Serif', 'Merriweather', 'Georgia', serif;
+      --font-sans:       system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       
-      --font-serif:    "Georgia", "Times New Roman", serif;
-      --font-sans:     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      /* Specific styling rules for the ESSAYS section (Image 1000044486.jpg) */
+      --essay-link:    #D04A02; 
+      --essay-font:    ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, monospace;
+      
       --max-w:         680px;
       --px:            1.5rem;
     }
@@ -42,8 +49,8 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: var(--font-serif);
-      line-height: 1.5;
+      font-family: var(--font-main-serif);
+      line-height: 1.6;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -89,7 +96,7 @@
     .site-tagline {
       font-family: var(--font-sans);
       font-size: 0.85rem;
-      color: var(--text-dim);
+      color: #555555;
     }
 
     /* ── Navigation ───────────────────────────────────────── */
@@ -142,17 +149,19 @@
     }
 
     p {
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
+      margin-bottom: 1.6rem;
+      font-size: 1.15rem;
+      color: var(--text-dim);
     }
 
     .section-title {
-      font-family: var(--font-sans);
-      font-size: 1rem;
+      font-family: var(--font-main-serif);
+      font-size: 1.5rem;
       font-weight: 700;
       margin-top: 2.5rem;
       margin-bottom: 1.2rem;
       color: var(--text);
+      letter-spacing: -0.3px;
     }
 
     /* ── Topic Selector Box ──────────────────────────────── */
@@ -178,7 +187,7 @@
       border-bottom-color: #B54D3B;
     }
 
-    /* ── Document List Layout (General) ──────────────────── */
+    /* ── General Post Layout ─────────────────────────────── */
     .post-list {
       list-style: none;
     }
@@ -186,15 +195,15 @@
     .post-row {
       display: flex;
       align-items: flex-start;
-      padding: 0.5rem 0;
+      padding: 0.6rem 0;
       gap: 1.25rem;
     }
 
     .post-meta-left {
-      width: 55px;
+      width: 60px;
       flex-shrink: 0;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
+      font-family: var(--font-main-serif);
+      font-size: 0.95rem;
       color: var(--text-muted);
     }
 
@@ -204,16 +213,17 @@
     }
 
     .post-title-link {
-      font-size: 1.125rem;
+      font-size: 1.15rem;
+      font-weight: 400;
     }
 
     .post-summary {
-      font-size: 0.95rem;
-      color: #333333;
-      margin-top: 0.15rem;
+      font-size: 1rem;
+      color: #444444;
+      margin-top: 0.25rem;
     }
 
-    /* ── 🎯 SPECIAL ESSAYS ARCHIVE (Replicating Image 1000044486.jpg) ── */
+    /* ── ESSAYS ARCHIVE (Image 1000044486.jpg Style) ── */
     .essays-archive {
       display: flex;
       flex-direction: column;
@@ -224,14 +234,14 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      font-family: var(--essay-font); /* Using clean Monospace / UI scale */
+      font-family: var(--essay-font); 
       font-size: 0.95rem;
       letter-spacing: -0.01em;
     }
 
     .essay-anchor {
-      color: var(--essay-link) !important; /* Elegant Reddish-Orange */
-      text-decoration: none !important;    /* Clean, no underlines */
+      color: var(--essay-link) !important; 
+      text-decoration: none !important;    
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -252,7 +262,37 @@
       flex-shrink: 0;
     }
 
-    /* ── Digital Garden Notes Layout (Matching 1000044488.jpg) ── */
+    /* ── 🎯 SPECIAL RESEARCH LIST (Exact UI replication of Image 1000044510.png) ── */
+    .research-bullet-list {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .research-bullet-item {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .research-date-prefix {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .research-link-anchor {
+      font-size: 1.1rem;
+      color: var(--link-color);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .research-link-anchor:hover {
+      color: var(--link-hover);
+    }
+
+    /* ── Digital Garden Notes Layout ── */
     .note-row {
       display: flex;
       align-items: flex-start;
@@ -263,11 +303,10 @@
     .note-meta {
       width: 80px;
       flex-shrink: 0;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-family: var(--font-main-serif);
+      font-size: 0.85rem;
       line-height: 1.5;
       color: var(--text-muted);
-      text-transform: capitalize;
     }
 
     .note-meta span {
@@ -289,13 +328,13 @@
       font-size: 1rem;
       font-weight: bold;
       margin-bottom: 0.75rem;
-      color: var(--text-dim);
+      color: var(--text-muted);
     }
 
     .book-item {
       padding: 0.5rem 0;
       border-bottom: 1px dashed var(--border);
-      font-size: 1.05rem;
+      font-size: 1.1rem;
     }
 
     /* ── Footer ───────────────────────────────────────────── */
@@ -332,7 +371,7 @@
     .subscribe-btn {
       background: #FFFFFF;
       border: 1px solid #252525;
-      color: var(--text-dim);
+      color: #333333;
       padding: 0.5rem 1.1rem;
       font-size: 0.85rem;
       cursor: pointer;
@@ -372,11 +411,13 @@
 <body>
 
   <div class="container">
+    <!-- ── Site Header ────────────────────────────────────── -->
     <header class="site-header">
       <a href="#home" onclick="switchPage('home')" class="site-brand">SUYODHANA</a>
       <div class="site-tagline">Politics, Culture, Nationalism, and the Study of Society</div>
     </header>
 
+    <!-- ── Core Navigation ────────────────────────────────── -->
     <nav class="site-nav" aria-label="Main">
       <ul class="nav-list">
         <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
@@ -388,10 +429,12 @@
       </ul>
     </nav>
 
+    <!-- ── Main Dynamic Content Window ───────────────────── -->
     <main>
 
+      <!-- 🏠 HOME PAGE VIEW -->
       <section id="home-page" class="content-page active-page">
-        <h1 style="font-size: 1.25rem; font-weight: 700; font-family: var(--font-sans); margin-bottom: 1.5rem;">
+        <h1 class="section-title" style="margin-top: 0; font-size: 1.6rem;">
           Politics, Culture, Nationalism, and the Study of Society.
         </h1>
         <p>Welcome to my personal architecture. This space serves as an independent repository for long-form inquiries into the structural history, political philosophy, and cultural currents shaping society.</p>
@@ -429,149 +472,105 @@
             </div>
           </div>
         </div>
-
-        <h2 class="section-title">Recent Notes</h2>
-        <div class="post-list">
-          <div class="post-row">
-            <div class="post-meta-left">10/24</div>
-            <div class="post-content-right"><a href="#" class="post-title-link">Steve Ballmer was an underrated CEO</a></div>
-          </div>
-          <div class="post-row">
-            <div class="post-meta-left">08/24</div>
-            <div class="post-content-right"><a href="#" class="post-title-link">How good can you be at Codenames without knowing any words?</a></div>
-          </div>
-        </div>
       </section>
 
+      <!-- ✒️ ESSAYS PAGE VIEW (Preserved Monospace Architecture style) -->
       <section id="essays-page" class="content-page">
-        <h2 class="section-title" style="margin-top: 0; font-family: var(--font-sans);">Long-Form Essays</h2>
-        
+        <h2 class="section-title" style="margin-top: 0;">Long-Form Essays</h2>
         <div class="essays-archive">
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">What matters</a>
-            <span class="essay-date-right">2026/05/20</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Be careful what you make easy</a>
-            <span class="essay-date-right">2026/05/19</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Screen record more</a>
-            <span class="essay-date-right">2026/05/17</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Buttondown no longer runs Revue imports automatically</a>
-            <span class="essay-date-right">2026/05/15</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Just aim the cannon correctly</a>
-            <span class="essay-date-right">2026/05/14</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">LLMs and Buttondown</a>
-            <span class="essay-date-right">2026/05/12</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">On self-updating screenshots</a>
-            <span class="essay-date-right">2026/05/08</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">April, 2026</a>
-            <span class="essay-date-right">2026/05/01</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Four years in the maelstrom</a>
-            <span class="essay-date-right">2026/04/19</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Write as you want to be heard</a>
-            <span class="essay-date-right">2026/04/10</span>
-          </div>
-          <div class="essay-row">
-            <a href="#" class="essay-anchor">Software never had a soul</a>
-            <span class="essay-date-right">2026/04/02</span>
-          </div>
+          <div class="essay-row"><a href="#" class="essay-anchor">What matters</a><span class="essay-date-right">2026/05/20</span></div>
+          <div class="essay-row"><a href="#" class="essay-anchor">Be careful what you make easy</a><span class="essay-date-right">2026/05/19</span></div>
+          <div class="essay-row"><a href="#" class="essay-anchor">Screen record more</a><span class="essay-date-right">2026/05/17</span></div>
+          <div class="essay-row"><a href="#" class="essay-anchor">Buttondown no longer runs Revue imports automatically</a><span class="essay-date-right">2026/05/15</span></div>
+          <div class="essay-row"><a href="#" class="essay-anchor">Just aim the cannon correctly</a><span class="essay-date-right">2026/05/14</span></div>
+          <div class="essay-row"><a href="#" class="essay-anchor">LLMs and Buttondown</a><span class="essay-date-right">2026/05/12</span></div>
         </div>
       </section>
 
+      <!-- 🔬 🎯 RESEARCH PAGE VIEW (Exact Style Replication of Image 1000044510.png) -->
       <section id="research-page" class="content-page">
         <h2 class="section-title" style="margin-top: 0;">Research Projects & Papers</h2>
-        <div class="post-list">
-          <div class="post-row">
-            <div class="post-meta-left">2026</div>
-            <div class="post-content-right">
-              <a href="#" class="post-title-link">The Structural Geopolitics of the Bengal Delta Basin</a>
-              <div class="post-summary">An examination of historical agrarian border systems and water distribution treaty impacts on legal frameworks.</div>
-            </div>
-          </div>
-        </div>
+        
+        <ul class="research-bullet-list">
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">April 9th, 2026: </span>
+            <a href="#" class="research-link-anchor">"The Structural Geopolitics of the Bengal Delta Basin" is out!</a>
+          </li>
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">December 30th, 2025: </span>
+            <a href="#" class="research-link-anchor">Interpreters and Constitutional Jurisprudence everywhere!</a>
+          </li>
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">November 20th, 2025: </span>
+            <a href="#" class="research-link-anchor">Where administrative "simulation" came from</a>
+          </li>
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">June 29th, 2025: </span>
+            <a href="#" class="research-link-anchor">"Agrarian Border Systems and Statutory Shifts" will appear at ILS 2025</a>
+          </li>
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">December 31st, 2024: </span>
+            <a href="#" class="research-link-anchor">Historical Evolution of Water Distribution Treaty Parameters</a>
+          </li>
+          <li class="research-bullet-item">
+            <span class="research-date-prefix">September 22nd, 2024: </span>
+            <a href="#" class="research-link-anchor">When is localized governance not enough for systemic stability?</a>
+          </li>
+        </ul>
       </section>
 
+      <!-- 🌱 NOTES PAGE VIEW -->
       <section id="notes-page" class="content-page">
-        <p style="font-weight: bold; margin-bottom: 2rem; font-family: var(--font-sans);">And here are all of my other posts.</p>
-        
+        <p style="font-weight: bold; margin-bottom: 2rem;">And here are all of my other posts.</p>
         <div class="notes-container">
           <div class="note-row">
-            <div class="note-meta"><span>May</span><span>08 ,</span><span>2026</span></div>
+            <div class="note-meta"><span>May 08,</span><span>2026</span></div>
             <div class="note-content-box"><a href="#" class="post-title-link">Twelve years</a></div>
           </div>
           <div class="note-row">
-            <div class="note-meta"><span>Jan</span><span>11 ,</span><span>2026</span></div>
+            <div class="note-meta"><span>Jan 11,</span><span>2026</span></div>
             <div class="note-content-box"><a href="#" class="post-title-link">Goodbye 2025</a></div>
-          </div>
-          <div class="note-row">
-            <div class="note-meta"><span>Jan</span><span>08 ,</span><span>2023</span></div>
-            <div class="note-content-box"><a href="#" class="post-title-link">It's Just a Function</a></div>
-          </div>
-          <div class="note-row">
-            <div class="note-meta"><span>Aug</span><span>06 ,</span><span>2022</span></div>
-            <div class="note-content-box"><a href="#" class="post-title-link">Batch no. 2 return statement</a></div>
           </div>
         </div>
       </section>
 
+      <!-- 📚 LIBRARY PAGE VIEW -->
       <section id="library-page" class="content-page">
         <h2 class="section-title" style="margin-top: 0;">Knowledge Repository</h2>
-        
         <div class="library-shelf">
           <div class="shelf-category">Political Philosophy & State Theory</div>
           <div class="book-item"><a href="#">The Concept of the Political</a> — Carl Schmitt</div>
           <div class="book-item"><a href="#">Imagined Communities</a> — Benedict Anderson</div>
         </div>
-
-        <div class="library-shelf">
-          <div class="shelf-category">Legal Evolution & Historiography</div>
-          <div class="book-item"><a href="#">The Ancient Constitution and the Feudal Law</a> — J.G.A. Pocock</div>
-        </div>
       </section>
 
+      <!-- 👤 ABOUT PAGE VIEW -->
       <section id="about-page" class="content-page">
         <h2 class="section-title" style="margin-top: 0;">About & Intellectual Journey</h2>
         <p>I am an independent researcher and writer tracking the intersections of nationalism, cultural evolution, and political theory.</p>
-        <p>Through <strong>Suyodhana</strong>, I aim to construct an archival framework where ideas are decoupled from transient online timelines and treated as active, permanent inquiries.</p>
       </section>
 
     </main>
 
+    <!-- ── Footer ───────────────────────────────────────────── -->
     <footer>
       <p class="subscribe-eyebrow">Stay Updated</p>
       <div class="subscribe-row">
         <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
         <button class="subscribe-btn" type="button">Subscribe</button>
       </div>
-
       <div class="footer-meta">
         <span style="color: var(--text-muted);">© 2026 Suyodhana</span>
         <div class="footer-links">
           <a href="#" onclick="switchPage('home')">Archive</a>
           <a href="#feed.xml">RSS Feed</a>
           <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-          <a href="mailto:contact@domain.com">Email</a>
         </div>
       </div>
     </footer>
   </div>
 
+  <!-- ── JavaScript Routing Engine ────────────────────── -->
   <script>
     function switchPage(targetPageId) {
       const pages = document.querySelectorAll('.content-page');
