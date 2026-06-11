@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUYODHANA — Politics, Culture, Nationalism</title>
   <style>
-    /* ── Reset & Core Typographic Variables ────────────────── */
+    /* ── Reset & Core Visual Variables ────────────────── */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -13,18 +13,22 @@
     }
 
     :root {
-      /* Print-inspired Minimal Palette */
-      --bg:            #FDFDFB; /* Warm, archival paper tone */
-      --text:          #111111; /* Off-black for reduced optical fatigue */
+      /* Your exact signature warm background palette from images 1000044486.jpg & 1000044489.jpg */
+      --bg:            #FFFDF6; 
+      --text:          #111111; 
       --text-dim:      #555555; 
-      --text-muted:    #767676;
+      --text-muted:    #777777;
       --border:        #E2E2DF;
-      --accent:        #8B263E; /* Restrained scholarly oxblood accent */
       
-      /* Typographic Scale Hierarchy */
-      --font-serif:    "EB Garamond", "Garamond", "Georgia", serif;
-      --font-sans:     "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      --max-w:         720px;
+      /* Exact Classic Web Link Colors from images 1000044489.jpg & 1000044488.jpg */
+      --link-color:    #0000EE;
+      --link-hover:    #0000AA;
+      
+      /* Pure Typography Styles matching your favorite viewports */
+      --font-serif:    "Georgia", "Times New Roman", serif;
+      --font-mono:     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans:     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --max-w:         680px;
       --px:            1.5rem;
     }
 
@@ -37,15 +41,20 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-serif);
-      line-height: 1.65;
+      line-height: 1.5;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.15s ease, border-color 0.15s ease;
+      color: var(--link-color);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+
+    a:hover {
+      color: var(--link-hover);
     }
 
     /* ── Layout Wrapper ───────────────────────────────────── */
@@ -59,34 +68,32 @@
 
     /* ── Site Header ──────────────────────────────────────── */
     .site-header {
-      padding-top: 3rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
+      padding-top: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #D3D3D3;
     }
 
     .site-brand {
       font-family: var(--font-sans);
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
       color: var(--text);
+      text-decoration: none;
       display: inline-block;
       margin-bottom: 0.25rem;
     }
 
     .site-tagline {
       font-family: var(--font-sans);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
 
     /* ── Navigation ───────────────────────────────────────── */
     .site-nav {
-      margin-top: 1.5rem;
-      padding-bottom: 1rem;
+      margin-top: 1rem;
+      padding-bottom: 0.5rem;
     }
 
     .nav-list {
@@ -100,14 +107,12 @@
       display: flex;
       align-items: center;
       font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      font-size: 0.875rem;
     }
 
     .nav-link {
       color: var(--text-muted);
-      padding: 0.25rem 0;
+      text-decoration: none;
     }
 
     .nav-link:hover, .nav-link.active {
@@ -115,15 +120,15 @@
     }
 
     .nav-slash {
-      color: var(--border);
-      padding: 0 0.75rem;
+      color: var(--text-muted);
+      padding: 0 0.45rem;
       user-select: none;
     }
 
-    /* ── Main Content Configuration ───────────────────────── */
+    /* ── Main Content Area ───────────────────────────────── */
     main {
-      padding-top: 3.5rem;
-      padding-bottom: 6rem;
+      padding-top: 2.5rem;
+      padding-bottom: 5rem;
     }
 
     .content-page {
@@ -134,234 +139,192 @@
       display: block;
     }
 
-    /* ── Structural Layout Typographics ────────────────────── */
     p {
       margin-bottom: 1.5rem;
-      font-size: 1.125rem;
-      text-align: justify;
+      font-size: 1.1rem;
     }
 
     .section-title {
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 3.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-dim);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.25rem;
-    }
-
-    /* ── Home Page Elements ───────────────────────────────── */
-    .manifesto {
-      font-size: 1.35rem;
-      line-height: 1.5;
-      margin-bottom: 2.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
       color: var(--text);
-      font-style: italic;
     }
 
-    /* Topical Index Term Mapping Block */
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 3rem;
+    /* ── Topic Selector Box ──────────────────────────────── */
+    .topic-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
     }
 
-    .topic-chip {
+    .topic-trigger {
       font-family: var(--font-sans);
-      font-size: 0.8rem;
-      padding: 0.5rem;
-      border: 1px solid var(--border);
-      text-align: center;
-      background: #FFFFFF;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px dashed var(--text-muted);
+      padding-bottom: 1px;
       cursor: pointer;
     }
 
-    .topic-chip:hover {
-      border-color: var(--text);
-      color: var(--accent);
+    .topic-trigger:hover {
+      color: #B54D3B;
+      border-bottom-color: #B54D3B;
     }
 
-    /* Archival Clean Feed Rows */
-    .document-item {
-      margin-bottom: 1.5rem;
+    /* ── Document List Layout (Matching 1000044489.jpg) ── */
+    .post-list {
+      list-style: none;
     }
 
-    .document-row {
+    .post-row {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 0.5rem 0;
+      gap: 1.25rem;
     }
 
-    .document-title {
-      font-size: 1.15rem;
-      font-weight: 500;
+    .post-meta-left {
+      width: 55px;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
-    .document-row:hover .document-title {
-      color: var(--accent);
-    }
-
-    .document-dots {
+    .post-content-right {
       flex: 1;
-      border-bottom: 1px dotted #D0D0CD;
-      position: relative;
-      top: -4px;
+      min-width: 0;
     }
 
-    .document-meta {
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      white-space: nowrap;
+    .post-title-link {
+      font-size: 1.125rem;
     }
 
-    .document-summary {
+    .post-summary {
       font-size: 0.95rem;
-      color: var(--text-dim);
-      margin-top: 0.25rem;
-      text-align: left;
+      color: #333333;
+      margin-top: 0.15rem;
     }
 
-    /* ── Digital Garden Notes Layout ───────────────────────── */
-    .garden-notes {
+    /* ── Digital Garden Notes Layout (Matching 1000044488.jpg) ── */
+    .note-row {
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px dashed #D3D3D3;
     }
 
-    .garden-card {
-      border-left: 2px solid var(--border);
-      padding-left: 1.25rem;
-    }
-
-    .garden-card:hover {
-      border-left-color: var(--accent);
-    }
-
-    .garden-date {
-      font-family: var(--font-sans);
+    .note-meta {
+      width: 80px;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      line-height: 1.5;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      text-transform: capitalize;
     }
 
-    /* ── Bibliographic Library Shelf ───────────────────────── */
-    .library-shelf {
-      margin-bottom: 3rem;
-    }
-
-    .shelf-category {
-      font-size: 1.25rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-
-    .book-item {
-      padding: 0.75rem 0;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .book-title {
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-
-    /* ── Footer Elements ──────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding-top: 3rem;
-      padding-bottom: 4rem;
-    }
-
-    .footer-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .subscribe-box {
-      max-width: 400px;
-    }
-
-    .subscribe-label {
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
+    .note-meta span {
       display: block;
     }
 
-    .subscribe-form {
+    .note-content-box {
+      flex: 1;
+      padding-left: 1rem;
+    }
+
+    /* ── Library Section ──────────────────────────────────── */
+    .library-shelf {
+      margin-bottom: 2.5rem;
+    }
+
+    .shelf-category {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .book-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 1.05rem;
+    }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0 3rem;
+    }
+
+    .subscribe-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .subscribe-row {
       display: flex;
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 4px;
+      max-width: 360px;
+      margin-bottom: 2rem;
     }
 
     .subscribe-input {
       flex: 1;
-      border: none;
-      background: transparent;
-      font-family: var(--font-serif);
-      font-size: 1rem;
+      background: #FFFFFF;
+      border: 1px solid #252525;
+      border-right: none;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
       outline: none;
     }
 
     .subscribe-btn {
-      background: transparent;
-      border: none;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      letter-spacing: 0.05em;
+      background: #FFFFFF;
+      border: 1px solid #252525;
       color: var(--text-dim);
+      padding: 0.5rem 1.1rem;
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
     .subscribe-btn:hover {
-      color: var(--accent);
+      background: #1F1F1F;
+      color: #FFFFFF;
+    }
+
+    .footer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
     }
 
     .footer-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      gap: 1.25rem;
       color: var(--text-muted);
+    }
+
+    .footer-links a {
+      text-decoration: none;
     }
 
     .footer-links a:hover {
       color: var(--text);
-    }
-
-    .footer-copy {
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* ── Responsive Viewport Optimizations ────────────────── */
-    @media (min-width: 600px) {
-      :root { --px: 3rem; }
-      .footer-layout {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -375,7 +338,7 @@
     </header>
 
     <!-- ── Core Navigation ────────────────────────────────── -->
-    <nav class="site-nav" aria-label="Primary Architectural Navigation">
+    <nav class="site-nav" aria-label="Main">
       <ul class="nav-list">
         <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
         <li class="nav-item"><span class="nav-slash">/</span><a href="#essays" class="nav-link" onclick="switchPage('essays')">ESSAYS</a></li>
@@ -386,231 +349,170 @@
       </ul>
     </nav>
 
-    <!-- ── Main Structural Frame ─────────────────────────── -->
+    <!-- ── Main Dynamic Content Window ───────────────────── -->
     <main>
 
-      <!-- 🏠 HOME PAGE -->
+      <!-- 🏠 HOME PAGE VIEW -->
       <section id="home-page" class="content-page active-page">
-        <p class="manifesto">
-          An independent repository dedicated to historical tracking, political philosophy, and legal frameworks—shaping an objective baseline for examining contemporary institutional trajectories.
-        </p>
+        <h1 style="font-size: 1.25rem; font-weight: 700; font-family: var(--font-sans); margin-bottom: 1.5rem;">
+          Politics, Culture, Nationalism, and the Study of Society.
+        </h1>
+        <p>Welcome to my personal architecture. This space serves as an independent repository for long-form inquiries into the structural history, political philosophy, and cultural currents shaping society.</p>
 
-        <h3 class="section-title">Browse Content by Topic</h3>
-        <div class="topic-grid">
-          <div class="topic-chip" onclick="switchPage('essays')">Nationalism</div>
-          <div class="topic-chip" onclick="switchPage('essays')">Political Thought</div>
-          <div class="topic-chip" onclick="switchPage('research')">Bangladesh</div>
-          <div class="topic-chip" onclick="switchPage('research')">History</div>
-          <div class="topic-chip" onclick="switchPage('essays')">Anthropology</div>
-          <div class="topic-chip" onclick="switchPage('essays')">Culture</div>
-          <div class="topic-chip" onclick="switchPage('research')">Law</div>
-          <div class="topic-chip" onclick="switchPage('research')">Education</div>
+        <h2 class="section-title">Browse Content by Topic:</h2>
+        <div class="topic-container">
+          <span class="topic-trigger" onclick="switchPage('essays')">Nationalism</span> •
+          <span class="topic-trigger" onclick="switchPage('essays')">Political Thought</span> •
+          <span class="topic-trigger" onclick="switchPage('research')">Bangladesh</span> •
+          <span class="topic-trigger" onclick="switchPage('research')">History</span> •
+          <span class="topic-trigger" onclick="switchPage('essays')">Anthropology</span> •
+          <span class="topic-trigger" onclick="switchPage('essays')">Culture</span> •
+          <span class="topic-trigger" onclick="switchPage('research')">Law</span> •
+          <span class="topic-trigger" onclick="switchPage('research')">Education</span>
         </div>
 
-        <h3 class="section-title">Featured Essays</h3>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Sovereignty of Intent: Designing Interfaces for Deep Human Work</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">May 2025</div>
-          </div>
-          <div class="document-summary">An analytical inquiry into technological clutter and how information scarcity preserves cognitive synthesis.</div>
-        </div>
-
-        <h3 class="section-title">Recent Research Outputs</h3>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">The Evolution of Constitutionalism and Local Governance Regimes</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">Working Paper</div>
-          </div>
-          <div class="document-summary">Tracing structural transitions within statutory models and administrative law parameters.</div>
-        </div>
-
-        <h3 class="section-title">Digital Garden Fragments</h3>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Victory is a lossy compressor</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">06/09</div>
+        <h2 class="section-title">Featured Essays</h2>
+        <div class="post-list">
+          <div class="post-row">
+            <div class="post-meta-left">05/24</div>
+            <div class="post-content-right">
+              <a href="#" class="post-title-link">Sovereignty of Intent: Designing Interfaces for Deep Human Work</a>
+              <div class="post-summary">An analytical inquiry into technological clutter and how information scarcity preserves cognitive synthesis.</div>
+            </div>
           </div>
         </div>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Textual Sanctuaries: The Radical Permanence of Static Ecosystems</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">04/15</div>
+
+        <h2 class="section-title">Recent Research</h2>
+        <div class="post-list">
+          <div class="post-row">
+            <div class="post-meta-left">03/24</div>
+            <div class="post-content-right">
+              <a href="#" class="post-title-link">The Evolution of Constitutionalism and Local Governance Regimes</a>
+              <div class="post-summary">Tracing structural transitions within statutory models and administrative law parameters.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Recent Notes</h2>
+        <div class="post-list">
+          <div class="post-row">
+            <div class="post-meta-left">10/24</div>
+            <div class="post-content-right"><a href="#" class="post-title-link">Steve Ballmer was an underrated CEO</a></div>
+          </div>
+          <div class="post-row">
+            <div class="post-meta-left">08/24</div>
+            <div class="post-content-right"><a href="#" class="post-title-link">How good can you be at Codenames without knowing any words?</a></div>
           </div>
         </div>
       </section>
 
-      <!-- ✒️ ESSAYS PAGE -->
+      <!-- ✒️ ESSAYS PAGE VIEW (Layout Matching 1000044489.jpg) -->
       <section id="essays-page" class="content-page">
-        <h2 class="section-title" style="margin-top:0;">Long-Form Essays</h2>
-        <p style="font-style: italic; color: var(--text-dim); margin-bottom: 2rem;">Polished historical, political, and sociological analyses.</p>
-        
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Victory is a lossy compressor</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">2026/06/09</div>
-          </div>
-        </div>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Back to Overcast: The Return of Minimal Native Audio Players</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">2026/06/04</div>
-          </div>
-        </div>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">The Philosophy of Distraction-Free Digital Architectural Environments</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">2025/10/24</div>
-          </div>
-        </div>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Why Typography Dictates the Absolute Core Value of Technical Papers</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">2025/08/12</div>
-          </div>
-        </div>
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Simplicity as an Extravagance in a World Built on Bloatware</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">2024/01/10</div>
-          </div>
+        <h2 class="section-title" style="margin-top: 0;">Long-Form Essays</h2>
+        <div class="post-list">
+          <div class="post-row"><div class="post-meta-left">10/24</div><div class="post-content-right"><a href="#" class="post-title-link">Steve Ballmer was an underrated CEO</a></div></div>
+          <div class="post-row"><div class="post-meta-left">08/24</div><div class="post-content-right"><a href="#" class="post-title-link">How good can you be at Codenames without knowing any words?</a></div></div>
+          <div class="post-row"><div class="post-meta-left">06/24</div><div class="post-content-right"><a href="#" class="post-title-link">A discussion of discussions on AI bias</a></div></div>
+          <div class="post-row"><div class="post-meta-left">05/24</div><div class="post-content-right"><a href="#" class="post-title-link">What the FTC got wrong in the Google antitrust investigation</a></div></div>
+          <div class="post-row"><div class="post-meta-left">03/24</div><div class="post-content-right"><a href="#" class="post-title-link">How web bloat impacts users with slow devices</a></div></div>
+          <div class="post-row"><div class="post-meta-left">02/24</div><div class="post-content-right"><a href="#" class="post-title-link">Why it's impossible to agree on what's allowed</a></div></div>
         </div>
       </section>
 
-      <!-- 🔬 RESEARCH PAGE -->
+      <!-- 🔬 RESEARCH PAGE VIEW -->
       <section id="research-page" class="content-page">
-        <h2 class="section-title" style="margin-top:0;">Research & White Papers</h2>
-        <p style="font-style: italic; color: var(--text-dim); margin-bottom: 2rem;">Academic formulations, case evaluations, and systemic deep-dives.</p>
-
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">The Structural Geopolitics of the Bengal Delta Basin</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">Draft v2</div>
+        <h2 class="section-title" style="margin-top: 0;">Research Projects & Papers</h2>
+        <div class="post-list">
+          <div class="post-row">
+            <div class="post-meta-left">2026</div>
+            <div class="post-content-right">
+              <a href="#" class="post-title-link">The Structural Geopolitics of the Bengal Delta Basin</a>
+              <div class="post-summary">An examination of historical agrarian border systems and water distribution treaty impacts on legal frameworks.</div>
+            </div>
           </div>
-          <div class="document-summary">An examination of historical agrarian border systems and water distribution treaty impacts on legal frameworks.</div>
-        </div>
-
-        <div class="document-item">
-          <div class="document-row">
-            <a href="#" class="document-title">Static Compilation Pipelines in Distributed Architecture Contexts</a>
-            <div class="document-dots"></div>
-            <div class="document-meta">Published</div>
-          </div>
-          <div class="document-summary">Analyzing computational metrics and zero layout configurations inside data analytics networks.</div>
         </div>
       </section>
 
-      <!-- 🌱 NOTES PAGE -->
+      <!-- 🌱 NOTES PAGE VIEW (Exact UI replication of 1000044488.jpg) -->
       <section id="notes-page" class="content-page">
-        <h2 class="section-title" style="margin-top:0;">Digital Garden & Marginalia</h2>
-        <p style="font-style: italic; color: var(--text-dim); margin-bottom: 2rem;">Raw entries, incomplete concepts, observations, and unstructured references.</p>
-
-        <div class="garden-notes">
-          <div class="garden-card">
-            <div class="garden-date">May 08, 2026</div>
-            <p style="font-size: 1.05rem; margin-bottom:0;">Observations on traditional hand-sewn leather binding architecture. The spine configuration dictates longevity. Modern PVA glue degrades rapidly, whereas hide-glues allow full signatures to breathe across centuries.</p>
+        <p style="font-weight: bold; margin-bottom: 2rem; font-family: var(--font-sans);">And here are all of my other posts.</p>
+        
+        <div class="notes-container">
+          <div class="note-row">
+            <div class="note-meta"><span>May</span><span>08 ,</span><span>2026</span></div>
+            <div class="note-content-box"><a href="#" class="post-title-link">Twelve years</a></div>
           </div>
-
-          <div class="garden-card">
-            <div class="garden-date">January 11, 2026</div>
-            <p style="font-size: 1.05rem; margin-bottom:0;">Minimalist layout rules are counter-cultural right now. Software stacks want to enforce dynamic injections. Restraining design to standard text values forces truth back to the raw semantics of the sentence structure.</p>
+          <div class="note-row">
+            <div class="note-meta"><span>Jan</span><span>11 ,</span><span>2026</span></div>
+            <div class="note-content-box"><a href="#" class="post-title-link">Goodbye 2025</a></div>
           </div>
-
-          <div class="garden-card">
-            <div class="garden-date">August 06, 2022</div>
-            <p style="font-size: 1.05rem; margin-bottom:0;">Building out parsing modules using Julia programming. Using simplified tools helps clear the visual field for processing large-scale bibliographic records.</p>
+          <div class="note-row">
+            <div class="note-meta"><span>Jan</span><span>08 ,</span><span>2023</span></div>
+            <div class="note-content-box"><a href="#" class="post-title-link">It's Just a Function</a></div>
+          </div>
+          <div class="note-row">
+            <div class="note-meta"><span>Aug</span><span>06 ,</span><span>2022</span></div>
+            <div class="note-content-box"><a href="#" class="post-title-link">Batch no. 2 return statement</a></div>
           </div>
         </div>
       </section>
 
-      <!-- 📚 LIBRARY PAGE -->
-      <section id="library-shelf" class="content-page">
-        <h2 class="section-title" style="margin-top:0;">The Library</h2>
-        <p style="font-style: italic; color: var(--text-dim); margin-bottom: 2rem;">A curated registry of foundational documents, texts, and active research materials.</p>
-
+      <!-- 📚 LIBRARY PAGE VIEW -->
+      <section id="library-page" class="content-page">
+        <h2 class="section-title" style="margin-top: 0;">Knowledge Repository</h2>
+        
         <div class="library-shelf">
           <div class="shelf-category">Political Philosophy & State Theory</div>
-          <div class="book-item">
-            <span class="book-title">The Concept of the Political</span> — Carl Schmitt
-          </div>
-          <div class="book-item">
-            <span class="book-title">Imagined Communities</span> — Benedict Anderson
-          </div>
+          <div class="book-item"><a href="#">The Concept of the Political</a> — Carl Schmitt</div>
+          <div class="book-item"><a href="#">Imagined Communities</a> — Benedict Anderson</div>
         </div>
 
         <div class="library-shelf">
           <div class="shelf-category">Legal Evolution & Historiography</div>
-          <div class="book-item">
-            <span class="book-title">The Ancient Constitution and the Feudal Law</span> — J.G.A. Pocock
-          </div>
-          <div class="book-item">
-            <span class="book-title">A History of the Common Law System</span> — Constitutional Archive Records
-          </div>
+          <div class="book-item"><a href="#">The Ancient Constitution and the Feudal Law</a> — J.G.A. Pocock</div>
         </div>
       </section>
 
-      <!-- 👤 ABOUT PAGE -->
+      <!-- 👤 ABOUT PAGE VIEW -->
       <section id="about-page" class="content-page">
-        <h2 class="section-title" style="margin-top:0;">About & Intellect</h2>
-        <p>
-          I am a researcher, writer, and law student investigating the intersections of nationalism, cultural evolution, and political theory. 
-        </p>
-        <p>
-          Through **Suyodhana**, I try to construct an archival framework where ideas are decoupled from transient online timelines and treated as active, permanent inquiries. My long-term projects explore the architectural history of institutions, legal structures within South Asia, and the preservation of high-grade typographic environments online.
-        </p>
+        <h2 class="section-title" style="margin-top: 0;">About & Intellectual Journey</h2>
+        <p>I am an independent researcher and writer tracking the intersections of nationalism, cultural evolution, and political theory.</p>
+        <p>Through <strong>Suyodhana</strong>, I aim to construct an archival framework where ideas are decoupled from transient online timelines and treated as active, permanent inquiries.</p>
       </section>
 
     </main>
 
-    <!-- ── Footer & Subscriptions ─────────────────────────── -->
+    <!-- ── Footer ───────────────────────────────────────────── -->
     <footer>
-      <div class="footer-layout">
-        <div class="subscribe-box">
-          <label class="subscribe-label" for="sub-email">Subscribe to Dispatch</label>
-          <div class="subscribe-form">
-            <input type="email" id="sub-email" class="subscribe-input" placeholder="intellect@domain.com" aria-label="Email address">
-            <button class="subscribe-btn" type="button">Submit</button>
-          </div>
-        </div>
-        
-        <div class="footer-links">
-          <a href="#" onclick="switchPage('home')">Archive</a>
-          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-          <a href="#feed.xml">RSS Feed</a>
-          <a href="mailto:contact@domain.com">Email</a>
-        </div>
+      <p class="subscribe-eyebrow">Stay Updated</p>
+      <div class="subscribe-row">
+        <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
+        <button class="subscribe-btn" type="button">Subscribe</button>
       </div>
 
-      <div style="margin-top: 3rem; display: flex; justify-content: space-between; align-items: center;">
-        <span class="footer-copy">© 2026 Suyodhana. Built for longevity.</span>
+      <div class="footer-meta">
+        <span style="color: var(--text-muted);">© 2026 Suyodhana</span>
+        <div class="footer-links">
+          <a href="#" onclick="switchPage('home')">Archive</a>
+          <a href="#feed.xml">RSS Feed</a>
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:contact@domain.com">Email</a>
+        </div>
       </div>
     </footer>
   </div>
 
-  <!-- ── JavaScript Architectural Routing Engine ──────────── -->
+  <!-- ── JavaScript Routing Engine ────────────────────── -->
   <script>
     function switchPage(targetPageId) {
-      // Deactivate all structural content views
       const pages = document.querySelectorAll('.content-page');
       pages.forEach(page => page.classList.remove('active-page'));
 
-      // Target active selector destination
       const activePage = document.getElementById(targetPageId + '-page');
       if (activePage) {
         activePage.classList.add('active-page');
       }
 
-      // Re-map tracking states across headers
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach(link => {
         link.classList.remove('active');
@@ -619,11 +521,9 @@
         }
       });
 
-      // Maintain viewport focus baseline
       window.scrollTo(0, 0);
     }
 
-    // Capture explicit routing addresses upon frame reload
     window.addEventListener('DOMContentLoaded', () => {
       const currentHash = window.location.hash.replace('#', '').toLowerCase();
       const validPages = ['home', 'essays', 'research', 'notes', 'library', 'about'];
