@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUYODHANA — Personal Blog</title>
+  <title>SUYODHANA — Personal Space</title>
   <style>
     /* ── Reset & Base ─────────────────────────────────────── */
     *, *::before, *::after {
@@ -73,7 +73,6 @@
       cursor: pointer;
     }
 
-    /* Blinking cursor — the single signature touch */
     .site-brand::after {
       content: "_";
       display: inline-block;
@@ -153,12 +152,84 @@
       padding: 2.75rem var(--px) 5rem;
     }
 
-    /* Dynamic Pages View Controls */
     .content-page {
-      display: none; /* ডিফল্টভাবে পেজগুলো হাইড থাকবে */
+      display: none;
     }
     .content-page.active-page {
-      display: block; /* শুধুমাত্র একটিভ পেজটি স্ক্রিনে দেখাবে */
+      display: block;
+    }
+
+    /* ── 🆕 New Home Page UI Styles ───────────────────────── */
+    .home-intro {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #000000;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .home-subintro {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #222222;
+      margin-bottom: 2.5rem;
+    }
+
+    .home-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #000000;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.005em;
+    }
+
+    .home-featured-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+    }
+
+    .home-featured-item {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .home-inline-link {
+      color: #0000ee; /* স্ক্রিনশটের মতো ক্লাসিক নীল লিংক */
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+    .home-inline-link:hover {
+      color: #0000aa;
+    }
+
+    .home-desc-text {
+      color: #333333;
+    }
+
+    .home-route-box {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+    
+    .home-nav-trigger {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px dashed var(--text-dim);
+      padding-bottom: 2px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+    .home-nav-trigger:hover {
+      color: #b54d3b;
+      border-bottom-color: #b54d3b;
     }
 
     /* ── Year Group (For Blog Archive) ────────────────────── */
@@ -221,7 +292,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ── 🆕 New Updated Essay List Layout (Clean Minimalist) ── */
+    /* ── Essay List Layout (Clean Minimalist) ── */
     .essay-list {
       list-style: none;
       padding: 0;
@@ -242,7 +313,7 @@
     }
 
     .essay-link:hover .essay-title {
-      color: #000000; /* হোভার করলে কুচকুচে কালো হবে */
+      color: #000000;
       text-decoration: underline;
       text-underline-offset: 4px;
       text-decoration-thickness: 1px;
@@ -251,7 +322,7 @@
     .essay-title {
       font-size: 0.9375rem;
       font-weight: 400;
-      color: #b54d3b; /* স্ক্রিনশটের মতো টেরাকোটা/লালচে মিনিমাল কালার টোন */
+      color: #b54d3b;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -263,14 +334,14 @@
 
     .essay-date {
       font-size: 0.8125rem;
-      color: #a4a4a4; /* স্ক্রিনশটের মতো ডিলুটেড বা হালকা ডেট কালার */
+      color: #a4a4a4;
       white-space: nowrap;
       flex-shrink: 0;
       letter-spacing: 0.01em;
-      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace; /* ক্লিন টাইপরাইটার ফন্ট */
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
     }
 
-       /* ── 🆕 New Updated Project Layout (Ultra-Minimal List UI) ── */
+    /* ── Project Layout (Ultra-Minimal List UI) ── */
     .project-list {
       list-style-type: disc;
       padding-left: 1.2rem;
@@ -280,8 +351,8 @@
     .project-item {
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 0.85rem; /* প্রতিটি প্রজেক্টের মাঝে গ্যাপ */
-      color: #333333; /* তারিখ ও কোলনের প্লেইন টেক্সট কালার */
+      margin-bottom: 0.85rem;
+      color: #333333;
     }
 
     .project-date {
@@ -289,18 +360,17 @@
     }
 
     .project-link {
-      color: #1a73e8; /* স্ক্রিনশটের মতো স্ট্যান্ডার্ড ক্লাসিক লিংক ব্লু কালার */
+      color: #1a73e8;
       text-decoration: underline;
       text-underline-offset: 2px;
       text-decoration-thickness: 1px;
       transition: color 0.12s ease;
-      word-wrap: break-word; /* বড় টেক্সট হলেও লাইনে ভেঙে যাবে, কাটবে না */
+      word-wrap: break-word;
     }
 
     .project-link:hover {
-      color: #1557b0; /* হোভার করলে কিছুটা গাঢ় নীল হবে */
+      color: #1557b0;
     }
-
 
     /* ── About Layout (Clean Specs Sheet UI) ─────────────── */
     .about-text {
@@ -428,7 +498,6 @@
     @media (min-width: 600px) {
       :root { --px: 2rem; }
       .post-title { font-size: 0.9625rem; }
-      .project-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (min-width: 900px) {
@@ -444,7 +513,6 @@
       .subscribe-btn { text-align: center; }
     }
 
-    /* ── Reduced motion ───────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .site-brand::after { animation: none; opacity: 0.4; }
     }
@@ -452,23 +520,60 @@
 </head>
 <body>
 
+  <!-- ── Site Header ──────────────────────────────────── -->
   <header class="site-header">
-    <a href="#blog" onclick="switchPage('blog')" class="site-brand" style="font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;">SUYODHANA</a>
+    <a href="#home" onclick="switchPage('home')" class="site-brand" style="font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;">SUYODHANA</a>
     <button class="theme-btn" aria-label="View theme info">Theme Info</button>
   </header>
 
+  <!-- ── Navigation ───────────────────────────────────── -->
   <nav class="site-nav" aria-label="Main">
     <ul class="nav-list">
-      <li class="nav-item"><a href="#blog" class="nav-link active" onclick="switchPage('blog')">BLOG</a></li>
+      <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
+      <li class="nav-item"><span class="nav-slash">/</span><a href="#blog" class="nav-link" onclick="switchPage('blog')">BLOG</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#eassy" class="nav-link" onclick="switchPage('eassy')">EASSY</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#project" class="nav-link" onclick="switchPage('project')">PROJECT</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#about" class="nav-link" onclick="switchPage('about')">ABOUT</a></li>
     </ul>
   </nav>
 
+  <!-- ── Main Content Area ──────────────────────────────── -->
   <main>
 
-    <section id="blog-page" class="content-page active-page">
+    <!-- 🏠 NEW HOME PAGE (Your Requested Screen-Inspired UI Layout) -->
+    <section id="home-page" class="content-page active-page">
+      <h1 class="home-intro">Hello, I'm a law student and digital space designer.</h1>
+      <p class="home-subintro">Welcome to my personal architecture. Here I blend text compilation, minimal UI frameworks, and analytical observations into a clean static web environment.</p>
+
+      <h2 class="home-section-title">Here are some of my favorite highlights:</h2>
+      <ul class="home-featured-list">
+        <li class="home-featured-item">
+          <a href="#blog" onclick="switchPage('blog')" class="home-inline-link">The Art of Responsive Web Design</a>: 
+          <span class="home-desc-text">A detailed breakdown of layout fluidity and computational metrics across digital viewports.</span>
+        </li>
+        <li class="home-featured-item">
+          <a href="#eassy" onclick="switchPage('eassy')" class="home-inline-link">The Philosophy of Minimalist Digital Spaces</a>: 
+          <span class="home-desc-text">Thoughts on creating distraction-free reading environments as a cognitive necessity.</span>
+        </li>
+        <li class="home-featured-item">
+          <a href="#project" onclick="switchPage('project')" class="home-inline-link">Suyodhana Core UI Blueprint</a>: 
+          <span class="home-desc-text">An ultra-minimalist bullet-driven framework optimized for high-speed documentation rendering.</span>
+        </li>
+      </ul>
+
+      <div class="home-route-box" style="border-top: 1px dashed #e5e5e5; padding-top: 1.5rem;">
+        <h2 class="home-section-title" style="margin-top: 0;">Explore deep indexes:</h2>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div>• View entire technical archive in <span class="home-nav-trigger" onclick="switchPage('blog')">BLOG Section →</span></div>
+          <div>• Browse minimal essays inside <span class="home-nav-trigger" onclick="switchPage('eassy')">EASSY Archive →</span></div>
+          <div>• Check open source builds at <span class="home-nav-trigger" onclick="switchPage('project')">PROJECT List →</span></div>
+          <div>• Read specifications on the <span class="home-nav-trigger" onclick="switchPage('about')">ABOUT Sheet →</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1️⃣ BLOG PAGE -->
+    <section id="blog-page" class="content-page">
       <div class="year-group">
         <h2 class="year-heading">2025</h2>
         <ul class="post-list">
@@ -502,181 +607,59 @@
               <span class="post-date">10/04</span>
             </a>
           </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Understanding Derivatives: The Foundation of Calculus</span>
-              <span class="post-date">15/02</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">A look into Quadratic Functions</span>
-              <span class="post-date">12/01</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="year-group">
-        <h2 class="year-heading">2023</h2>
-        <ul class="post-list">
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Mastering Data Structures: A Practical Approach to Efficient Code</span>
-              <span class="post-date">30/11</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Next.js vs. Gatsby: Choosing the Right React Framework for Your Project</span>
-              <span class="post-date">30/11</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Securing Your Web Applications: Best Practices and Common Pitfalls</span>
-              <span class="post-date">19/04</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">The Evolution of JavaScript: From ES5 to Modern ESNext</span>
-              <span class="post-date">02/04</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="year-group">
-        <h2 class="year-heading">2022</h2>
-        <ul class="post-list">
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">An Introduction to WebAssembly: Bringing Native Performance to the Browser</span>
-              <span class="post-date">15/12</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">CSS Grid vs. Flexbox: When to Use Each Layout Model</span>
-              <span class="post-date">08/09</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Type Theory Fundamentals: A Developer's Gentle Introduction</span>
-              <span class="post-date">22/06</span>
-            </a>
-          </li>
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">Functional Programming Patterns in Modern JavaScript</span>
-              <span class="post-date">03/03</span>
-            </a>
-          </li>
         </ul>
       </div>
     </section>
 
+    <!-- 2️⃣ EASSY PAGE -->
     <section id="eassy-page" class="content-page">
       <ul class="essay-list">
-        
         <li class="essay-item">
           <a href="#" class="essay-link">
             <span class="essay-title">Victory is a lossy compressor</span>
             <span class="essay-date">2026/06/09</span>
           </a>
         </li>
-
         <li class="essay-item">
           <a href="#" class="essay-link">
             <span class="essay-title">Back to Overcast</span>
             <span class="essay-date">2026/06/04</span>
           </a>
         </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">May, 2026</span>
-            <span class="essay-date">2026/06/01</span>
-          </a>
-        </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Self-hosting our CI, three months later</span>
-            <span class="essay-date">2026/06/01</span>
-          </a>
-        </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">ccusage</span>
-            <span class="essay-date">2026/05/27</span>
-          </a>
-        </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">What matters</span>
-            <span class="essay-date">2026/05/20</span>
-          </a>
-        </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Be careful what you make easy to buy</span>
-            <span class="essay-date">2026/05/19</span>
-          </a>
-        </li>
-
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Screen record more</span>
-            <span class="essay-date">2026/05/17</span>
-          </a>
-        </li>
-
         <li class="essay-item">
           <a href="#" class="essay-link">
             <span class="essay-title">The Philosophy of Minimalist Digital Spaces</span>
             <span class="essay-date">2025/10/24</span>
           </a>
         </li>
-
         <li class="essay-item">
           <a href="#" class="essay-link">
             <span class="essay-title">Why Typography Matters in Technical Writing</span>
             <span class="essay-date">2025/08/12</span>
           </a>
         </li>
-
       </ul>
     </section>
 
-        <!-- 3️⃣ PROJECT PAGE (🆕 Ultra-Minimal Bullet List View) -->
+    <!-- 3️⃣ PROJECT PAGE -->
     <section id="project-page" class="content-page">
       <ul class="project-list">
-        
         <li class="project-item">
           <span class="project-date">April 9th, 2026:</span> 
           <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on low layout shift and distraction-free documentation reading for multi-device platforms</a>
         </li>
-
         <li class="project-item">
           <span class="project-date">December 30th, 2025:</span> 
           <a href="#" class="project-link">Pluto Analytics Extension with open-source plotting algorithms designed primarily for real-time performance tracking data</a>
         </li>
-
         <li class="project-item">
           <span class="project-date">November 20th, 2025:</span> 
           <a href="#" class="project-link">Static Engine Generator — A lightweight compilation workflow built to render complex nested static file structures seamlessly across edge networks</a>
         </li>
-
       </ul>
     </section>
 
-
+    <!-- 4️⃣ ABOUT PAGE -->
     <section id="about-page" class="content-page">
       <div class="about-text">
         <p>Hello! Welcome to my personal digital notebook. I am a passionate creator who loves exploring the intersecting lines between elegant web architectures, clean designs, and timeless analytical philosophies.</p>
@@ -688,10 +671,6 @@
           <td>Clean UI Design, Core Scripting, Microservices</td>
         </tr>
         <tr>
-          <td>Current Research</td>
-          <td>Component-driven static site architectures & typography physics</td>
-        </tr>
-        <tr>
           <td>Interests</td>
           <td>Data Analytics, Geometry, Minimalism</td>
         </tr>
@@ -700,21 +679,17 @@
 
   </main>
 
+  <!-- ── Footer ────────────────────────────────────────── -->
   <footer>
     <p class="subscribe-eyebrow">Stay Updated</p>
     <div class="subscribe-row">
-      <input
-        type="email"
-        class="subscribe-input"
-        placeholder="you@example.com"
-        aria-label="Email address for newsletter"
-      >
+      <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
       <button class="subscribe-btn" type="button">Subscribe</button>
     </div>
     <p class="subscribe-note">No spam. Unsubscribe any time.</p>
 
     <div class="footer-meta">
-      <span class="footer-copy">© 2025 Suyodhana</span>
+      <span class="footer-copy">© 2026 Suyodhana</span>
       <div class="footer-links">
         <a href="#" class="footer-link">Facebook</a>
         <a href="#" class="footer-link">Instagram</a>
@@ -723,39 +698,36 @@
     </div>
   </footer>
 
+  <!-- ── ⚡ JavaScript Routing Engine ────────────────────── -->
   <script>
     function switchPage(targetPageId) {
-      // 1. সব পেজকে ভিউ থেকে সরিয়ে দেওয়া
       const pages = document.querySelectorAll('.content-page');
       pages.forEach(page => {
         page.classList.remove('active-page');
       });
 
-      // 2. শুধুমাত্র ক্লিক করা নির্দিষ্ট পেজটি স্ক্রিনে দেখানো
       const activePage = document.getElementById(targetPageId + '-page');
       if (activePage) {
         activePage.classList.add('active-page');
       }
 
-      // 3. মেনুবারের এক্টিভ (কালো রঙের) স্টাইল পরিবর্তন করা
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach(link => {
         link.classList.remove('active');
-        // লিংকের টেক্সট মিলিয়ে এক্টিভ ক্লাস দেওয়া (যেমন: BLOG, EASSY)
         if (link.textContent.toLowerCase() === targetPageId) {
           link.classList.add('active');
         }
       });
 
-      // পেজ পরিবর্তন হলে স্ক্রল যেন একদম উপরে চলে আসে
       window.scrollTo(0, 0);
     }
 
-    // ব্রাউজারের ইউআরএল হ্যাস (#) সরাসরি টাইপ করলেও যেন নির্দিষ্ট পেজটি লোড হয়
     window.addEventListener('DOMContentLoaded', () => {
       const currentHash = window.location.hash.replace('#', '').toLowerCase();
-      if (['blog', 'eassy', 'project', 'about'].includes(currentHash)) {
+      if (['home', 'blog', 'eassy', 'project', 'about'].includes(currentHash)) {
         switchPage(currentHash);
+      } else {
+        switchPage('home'); // ডিফল্ট হোমপেইজ লোড হবে
       }
     });
   </script>
