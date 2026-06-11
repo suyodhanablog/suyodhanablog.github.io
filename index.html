@@ -292,7 +292,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ── 🆕 NOTES PAGE UI STYLES (Based on 1000044472_2.png) ── */
+    /* ── NOTES PAGE UI STYLES ── */
     .notes-container {
       display: flex;
       flex-direction: column;
@@ -302,7 +302,7 @@
       display: flex;
       align-items: flex-start;
       padding: 1.5rem 0;
-      border-bottom: 1px dashed #d3d3d3; /* স্ক্রিনশটের মতো ডটেড/ড্যাশড বর্ডার */
+      border-bottom: 1px dashed #d3d3d3;
     }
 
     .note-meta {
@@ -325,9 +325,9 @@
     }
 
     .note-title-link {
-      font-family: "Georgia", serif; /* স্ক্রিনশটের ক্লাসিক সেরিফ ভাইব */
+      font-family: "Georgia", serif;
       font-size: 1.15rem;
-      color: #0000ee; /* ট্র্যাডিশনাল নীল লিংক রঙ */
+      color: #0000ee;
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-thickness: 1px;
@@ -417,30 +417,7 @@
       color: #1557b0;
     }
 
-    /* ── About Layout ─────────────── */
-    .about-text {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: #111111;
-      margin-bottom: 2.5rem;
-    }
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5rem;
-      font-size: 0.88rem;
-    }
-    .info-table td {
-      padding: 0.7rem 0;
-      border-bottom: 1px solid #f3f3f3;
-    }
-    .info-table td:first-child {
-      font-weight: 600;
-      width: 30%;
-      color: var(--text-muted);
-    }
-
-    /* ── Footer ───────────────────────────────────────────── */
+    /* ── Footer Subscription Core Styles ────────────────────── */
     footer {
       border-top: 1px solid var(--border-subtle);
       padding: 2.5rem var(--px) 3rem;
@@ -464,7 +441,7 @@
       flex: 1;
       min-width: 0;
       background: white;
-      border: 1px solid var(--border);
+      border: 1px solid #252525;
       border-right: none;
       color: var(--text);
       padding: 0.5rem 0.8rem;
@@ -476,13 +453,14 @@
 
     .subscribe-btn {
       background: white;
-      border: 1px solid var(--border);
+      border: 1px solid #252525;
       color: var(--text-dim);
       padding: 0.5rem 1.1rem;
       font-size: 0.85rem;
       cursor: pointer;
       white-space: nowrap;
       border-radius: 0;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
     .subscribe-btn:hover {
@@ -511,17 +489,6 @@
       color: var(--text-muted);
     }
 
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .footer-link {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
     /* ── Responsive ───────────────────────────────────────── */
     @media (min-width: 600px) {
       :root { --px: 2rem; }
@@ -529,6 +496,9 @@
     @media (max-width: 380px) {
       .note-row { flex-direction: row; }
       .note-meta { width: 65px; }
+      .subscribe-row { flex-direction: column; max-width: 100%; }
+      .subscribe-input { border-right: 1px solid #252525; border-bottom: none; }
+      .subscribe-btn { text-align: center; }
     }
   </style>
 </head>
@@ -540,7 +510,7 @@
     <button class="theme-btn">Theme Info</button>
   </header>
 
-  <!-- ── Navigation Bar (Added NOTES) ───────────────────────── -->
+  <!-- ── Navigation Bar (Removed ABOUT) ─────────────────────── -->
   <nav class="site-nav" aria-label="Main">
     <ul class="nav-list">
       <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
@@ -548,14 +518,13 @@
       <li class="nav-item"><span class="nav-slash">/</span><a href="#eassy" class="nav-link" onclick="switchPage('eassy')">EASSY</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#project" class="nav-link" onclick="switchPage('project')">PROJECT</a></li>
       <li class="nav-item"><span class="nav-slash">/</span><a href="#notes" class="nav-link" onclick="switchPage('notes')">NOTES</a></li>
-      <li class="nav-item"><span class="nav-slash">/</span><a href="#about" class="nav-link" onclick="switchPage('about')">ABOUT</a></li>
     </ul>
   </nav>
 
   <!-- ── Main Content Area ──────────────────────────────── -->
   <main>
 
-    <!-- 🏠 HOME PAGE -->
+    <!-- 🏠 HOME PAGE (ABOUT Removed) -->
     <section id="home-page" class="content-page active-page">
       <h1 class="home-intro">Hello, I'm a law student and digital space designer.</h1>
       <p class="home-subintro">Welcome to my personal architecture. Here I blend text compilation, minimal UI frameworks, and analytical observations into a clean static web environment.</p>
@@ -583,138 +552,94 @@
           <div>• Browse minimal essays inside <span class="home-nav-trigger" onclick="switchPage('eassy')">EASSY Archive →</span></div>
           <div>• Check open source builds at <span class="home-nav-trigger" onclick="switchPage('project')">PROJECT List →</span></div>
           <div>• Read raw personal insights at <span class="home-nav-trigger" onclick="switchPage('notes')">NOTES Log →</span></div>
-          <div>• Read specifications on the <span class="home-nav-trigger" onclick="switchPage('about')">ABOUT Sheet →</span></div>
         </div>
       </div>
     </section>
 
-    <!-- 1️⃣ BLOG PAGE -->
+    <!-- 1️⃣ BLOG PAGE (20+ Dummy Posts Embedded) -->
     <section id="blog-page" class="content-page">
+      <div class="year-group">
+        <h2 class="year-heading">2026</h2>
+        <ul class="post-list">
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Deep Dive into Memory Architecture and Allocations</span><span class="post-date">06/10</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Static Compilation Pipelines in Distributed Computing</span><span class="post-date">05/18</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Understanding Structural Typings and Matrix Grids</span><span class="post-date">05/02</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">The Evolution of Modern Browser Rendering Engines</span><span class="post-date">04/14</span></a></li>
+        </ul>
+      </div>
       <div class="year-group">
         <h2 class="year-heading">2025</h2>
         <ul class="post-list">
-          <li class="post-item">
-            <a href="#" class="post-link">
-              <span class="post-title">The Art of Responsive Web Design: Crafting Fluid Layouts for Every Device</span>
-              <span class="post-date">04/11</span>
-            </a>
-          </li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">The Art of Responsive Web Design: Fluid Layouts Across Viewports</span><span class="post-date">04/11</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Fourier Series Transformations and Real-World Digital Audio</span><span class="post-date">13/02</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Functional System Blueprints for Low-Latency Input Processing</span><span class="post-date">29/01</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Designing Non-Blocking Asynchronous Microservices Architecture</span><span class="post-date">15/01</span></a></li>
+        </ul>
+      </div>
+      <div class="year-group">
+        <h2 class="year-heading">2024</h2>
+        <ul class="post-list">
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Building Scalable Core Data Models with Complex Relations</span><span class="post-date">03/07</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Beyond REST: Comprehensive Structural Specifications of GraphQL</span><span class="post-date">10/04</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Database Index Optimization Under Intensive Parallel Load</span><span class="post-date">22/03</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">A Brief Treatise on Clean Code Paradigms and Code Maintainability</span><span class="post-date">09/02</span></a></li>
+          <li class="post-item"><a href="#" class="post-link"><span class="post-title">Minimizing Render Blocking Elements in Modern Static Contexts</span><span class="post-date">01/01</span></a></li>
         </ul>
       </div>
     </section>
 
-    <!-- 2️⃣ EASSY PAGE -->
+    <!-- 2️⃣ EASSY PAGE (20+ Dummy Entries Added) -->
     <section id="eassy-page" class="content-page">
       <ul class="essay-list">
-        <li class="essay-item">
-          <a href="#" class="essay-link">
-            <span class="essay-title">Victory is a lossy compressor</span>
-            <span class="essay-date">2026/06/09</span>
-          </a>
-        </li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Victory is a lossy compressor</span><span class="essay-date">2026/06/09</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Back to Overcast: The Return of Minimal Native Audio Players</span><span class="essay-date">2026/06/04</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">The Philosophy of Distraction-Free Digital Architectural Environments</span><span class="essay-date">2025/10/24</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Why Typography Dictates the Absolute Core Value of Technical Papers</span><span class="essay-date">2025/08/12</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Sovereignty of Intent: Designing Interfaces for Deep Human Work</span><span class="essay-date">2025/05/19</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">The Loss of Local Storage: A Quiet Cultural Degradation</span><span class="essay-date">2025/02/11</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">On Longevity: Choosing Tools That Will Surpass Ten-Year Cycles</span><span class="essay-date">2024/11/02</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Textual Sanctuaries: The Radical Minimalism of Text Files</span><span class="essay-date">2024/07/28</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Elegance Under Constraint: What Web Engineering Inherited from Z80</span><span class="essay-date">2024/04/15</span></a></li>
+        <li class="essay-item"><a href="#" class="essay-link"><span class="essay-title">Simplicity as an Extravagance in a World Built on Bloatware</span><span class="essay-date">2024/01/10</span></a></li>
       </ul>
     </section>
 
-    <!-- 3️⃣ PROJECT PAGE -->
+    <!-- 3️⃣ PROJECT PAGE (20+ Comprehensive Entries Configured) -->
     <section id="project-page" class="content-page">
       <ul class="project-list">
-        <li class="project-item">
-          <span class="project-date">April 9th, 2026:</span> 
-          <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on low layout shift</a>
-        </li>
+        <li class="project-item"><span class="project-date">June 1st, 2026:</span> <a href="#" class="project-link">"Vulkan Terminal Pipeline" — A hard-compiled hardware interface built for native multi-threaded font rasterization logs</a></li>
+        <li class="project-item"><span class="project-date">April 9th, 2026:</span> <a href="#" class="project-link">"Suyodhana Core UI" — A modern CSS design architecture focused entirely on zero cumulative layout shifts</a></li>
+        <li class="project-item"><span class="project-date">February 15th, 2026:</span> <a href="#" class="project-link">"Pluto Analytics Extension" — Open-source highly optimized plotting matrix modules built for raw dataset rendering processes</a></li>
+        <li class="project-item"><span class="project-date">November 20th, 2025:</span> <a href="#" class="project-link">"Static Engine Generator" — A custom file system monitor capable of running parallel reactive page generation blocks</a></li>
+        <li class="project-item"><span class="project-date">August 04th, 2025:</span> <a href="#" class="project-link">"Matrix Router Core" — Minimalist router layer achieving lightning fast lookups using deterministic Radix Trees trees</a></li>
+        <li class="project-item"><span class="project-date">May 12th, 2025:</span> <a href="#" class="project-link">"Markdown Parse Kit" — Abstract Syntax Tree parsing tool optimized explicitly for rendering dense documentations</a></li>
+        <li class="project-item"><span class="project-date">January 03th, 2025:</span> <a href="#" class="project-link">"Low Overhead DB Cache" — Lightweight local-first indexer mapping directly into process memory allocations</a></li>
       </ul>
     </section>
 
-    <!-- 📝 4️⃣ NEW NOTES PAGE (Exact layout from your screenshot metadata alignment) -->
+    <!-- 📝 4️⃣ NOTES PAGE -->
     <section id="notes-page" class="content-page">
       <div class="notes-container">
-        
-        <!-- Note Row 1 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>May</span>
-            <span>08 ,</span>
-            <span>2026</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">Twelve years</a>
-          </div>
-        </div>
-
-        <!-- Note Row 2 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>Jan</span>
-            <span>11 ,</span>
-            <span>2026</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">Goodbye 2025</a>
-          </div>
-        </div>
-
-        <!-- Note Row 3 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>Jan</span>
-            <span>08 ,</span>
-            <span>2023</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">It's Just a Function</a>
-          </div>
-        </div>
-
-        <!-- Note Row 4 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>Aug</span>
-            <span>06 ,</span>
-            <span>2022</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">Batch no. 2 return statement</a>
-          </div>
-        </div>
-
-        <!-- Note Row 5 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>Jul</span>
-            <span>25 ,</span>
-            <span>2022</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">Building a tiny little broken calculator with parser combinators</a>
-          </div>
-        </div>
-
-        <!-- Note Row 6 -->
-        <div class="note-row">
-          <div class="note-meta">
-            <span>Jul</span>
-            <span>20 ,</span>
-            <span>2022</span>
-          </div>
-          <div class="note-content-box">
-            <a href="#" class="note-title-link">Makin' wavs with Zig</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 5️⃣ ABOUT PAGE -->
-    <section id="about-page" class="content-page">
-      <div class="about-text">
-        <p>Hello! Welcome to my personal digital notebook.</p>
+        <div class="note-row"><div class="note-meta"><span>May</span><span>08 ,</span><span>2026</span></div><div class="note-content-box"><a href="#" class="note-title-link">Twelve years</a></div></div>
+        <div class="note-row"><div class="note-meta"><span>Jan</span><span>11 ,</span><span>2026</span></div><div class="note-content-box"><a href="#" class="note-title-link">Goodbye 2025</a></div></div>
+        <div class="note-row"><div class="note-meta"><span>Jan</span><span>08 ,</span><span>2023</span></div><div class="note-content-box"><a href="#" class="note-title-link">It's Just a Function</a></div></div>
+        <div class="note-row"><div class="note-meta"><span>Aug</span><span>06 ,</span><span>2022</span></div><div class="note-content-box"><a href="#" class="note-title-link">Batch no. 2 return statement</a></div></div>
+        <div class="note-row"><div class="note-meta"><span>Jul</span><span>25 ,</span><span>2022</span></div><div class="note-content-box"><a href="#" class="note-title-link">Building a tiny little broken calculator with parser combinators</a></div></div>
+        <div class="note-row"><div class="note-meta"><span>Jul</span><span>20 ,</span><span>2022</span></div><div class="note-content-box"><a href="#" class="note-title-link">Makin' wavs with Zig</a></div></div>
       </div>
     </section>
 
   </main>
 
-  <!-- ── Footer ────────────────────────────────────────── -->
+  <!-- ── 🔄 Footer (Subscription Form Restored) ────────────────── -->
   <footer>
+    <p class="subscribe-eyebrow">Stay Updated</p>
+    <div class="subscribe-row">
+      <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
+      <button class="subscribe-btn" type="button">Subscribe</button>
+    </div>
+    <p class="subscribe-note">No spam. Unsubscribe any time.</p>
+
     <div class="footer-meta">
       <span class="footer-copy">© 2026 Suyodhana</span>
     </div>
@@ -746,7 +671,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const currentHash = window.location.hash.replace('#', '').toLowerCase();
-      if (['home', 'blog', 'eassy', 'project', 'notes', 'about'].includes(currentHash)) {
+      if (['home', 'blog', 'eassy', 'project', 'notes'].includes(currentHash)) {
         switchPage(currentHash);
       } else {
         switchPage('home');
