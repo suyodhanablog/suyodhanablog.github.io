@@ -1,607 +1,1008 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> MUKTA — Politics, Culture, Nationalism</title>
-  
-  <!-- ── Google Fonts Integration for Core Typography (Image 1000044511.png) ── -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEREVIEW — Words & Perspectives by Ahman</title>
+    <!-- Tailwind CSS for utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for editorial headlines, Cormorant Garamond for reader serif, Plus Jakarta Sans for refined captions -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ── Reset & Core Visual Variables ────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0c0d10',
+                            card: '#13151b',
+                            cardBorder: '#1e222d',
+                            cream: '#f4efe6',
+                            muted: '#9a9eab',
+                            burgundy: '#7a1c27',
+                            burgundyLight: '#a32636',
+                            burgundyGlow: 'rgba(163, 38, 54, 0.15)',
+                            gold: '#c2a370'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        articleSerif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 
-    :root {
-      --bg:            #FFFDF6; 
-      --text:          #111111; 
-      --text-dim:      #333333; 
-      --text-muted:    #666666;
-      --border:        #E2E2DF;
-      
-      /* Classic Web Link Colors */
-      --link-color:    #0000EE;
-      --link-hover:    #0000AA;
-      
-      /* Core Serif Typography Identity */
-      --font-main-serif: 'PT Serif', 'Merriweather', 'Georgia', serif;
-      --font-sans:       system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      
-      /* Specific styling rules for the ESSAYS section (Image 1000044486.jpg) */
-      --essay-link:    #D04A02; 
-      --essay-font:    ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, monospace;
-      
-      --max-w:         680px;
-      --px:            1.5rem;
-    }
+    <style>
+        /* Custom grain overlay */
+        .bg-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+        }
 
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-    }
+        /* Editorial lines & borders */
+        .border-editorial {
+            border-color: rgba(244, 239, 230, 0.12);
+        }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-main-serif);
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+        /* Dropcap styling */
+        .drop-cap::first-letter {
+            font-family: 'Playfair Display', serif;
+            float: left;
+            font-size: 4.5rem;
+            line-height: 3.6rem;
+            padding-top: 4px;
+            padding-right: 14px;
+            padding-left: 2px;
+            color: #a32636;
+            font-weight: 700;
+        }
 
-    a {
-      color: var(--link-color);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
+        /* Smooth page transitions */
+        .view-section {
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    a:hover {
-      color: var(--link-hover);
-    }
+        .view-hidden {
+            display: none !important;
+            opacity: 0;
+            transform: translateY(12px);
+        }
 
-    /* ── Layout Wrapper ───────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: calc(var(--max-w) + var(--px) * 2);
-      margin: 0 auto;
-      padding-left: var(--px);
-      padding-right: var(--px);
-    }
+        /* Image hover zooms */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+            filter: contrast(108%) brightness(105%);
+        }
 
-    /* ── Site Header ──────────────────────────────────────── */
-    .site-header {
-      padding-top: 2.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #D3D3D3;
-    }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c0d10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #242834;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a32636;
+        }
 
-    .site-brand {
-      font-family: var(--font-sans);
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 0.25rem;
-    }
+        /* Text outline effect for watermarks */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(244, 239, 230, 0.15);
+            color: transparent;
+        }
 
-    .site-tagline {
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      color: #555555;
-    }
-
-    /* ── Navigation ───────────────────────────────────────── */
-    .site-nav {
-      margin-top: 1rem;
-      padding-bottom: 0.5rem;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      font-family: var(--font-sans);
-      font-size: 0.875rem;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: var(--text);
-    }
-
-    .nav-slash {
-      color: var(--text-muted);
-      padding: 0 0.45rem;
-      user-select: none;
-    }
-
-    /* ── Main Content Area ───────────────────────────────── */
-    main {
-      padding-top: 2.5rem;
-      padding-bottom: 5rem;
-    }
-
-    .content-page {
-      display: none;
-    }
-    
-    .content-page.active-page {
-      display: block;
-    }
-
-    p {
-      margin-bottom: 1.6rem;
-      font-size: 1.15rem;
-      color: var(--text-dim);
-    }
-
-    .section-title {
-      font-family: var(--font-main-serif);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 2.5rem;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-      letter-spacing: -0.3px;
-    }
-
-    /* ── Topic Selector Box ──────────────────────────────── */
-    .topic-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .topic-trigger {
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      border-bottom: 1px dashed var(--text-muted);
-      padding-bottom: 1px;
-      cursor: pointer;
-    }
-
-    .topic-trigger:hover {
-      color: #B54D3B;
-      border-bottom-color: #B54D3B;
-    }
-
-    /* ── General Post Layout ─────────────────────────────── */
-    .post-list {
-      list-style: none;
-    }
-
-    .post-row {
-      display: flex;
-      align-items: flex-start;
-      padding: 0.6rem 0;
-      gap: 1.25rem;
-    }
-
-    .post-meta-left {
-      width: 60px;
-      flex-shrink: 0;
-      font-family: var(--font-main-serif);
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .post-content-right {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .post-title-link {
-      font-size: 1.15rem;
-      font-weight: 400;
-    }
-
-    .post-summary {
-      font-size: 1rem;
-      color: #444444;
-      margin-top: 0.25rem;
-    }
-
-    /* ── ESSAYS ARCHIVE (Image 1000044486.jpg Style) ── */
-    .essays-archive {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .essay-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-family: var(--essay-font); 
-      font-size: 0.95rem;
-      letter-spacing: -0.01em;
-    }
-
-    .essay-anchor {
-      color: var(--essay-link) !important; 
-      text-decoration: none !important;    
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .essay-anchor:hover {
-      text-decoration: underline !important;
-      text-underline-offset: 2px;
-    }
-
-    .essay-date-right {
-      color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
-      padding-left: 1.5rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    /* ── 🎯 SPECIAL RESEARCH LIST (Exact UI replication of Image 1000044510.png) ── */
-    .research-bullet-list {
-      list-style-type: disc;
-      padding-left: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    .research-bullet-item {
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .research-date-prefix {
-      color: var(--text);
-      font-weight: 400;
-    }
-
-    .research-link-anchor {
-      font-size: 1.1rem;
-      color: var(--link-color);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .research-link-anchor:hover {
-      color: var(--link-hover);
-    }
-
-    /* ── Digital Garden Notes Layout ── */
-    .note-row {
-      display: flex;
-      align-items: flex-start;
-      padding: 1.5rem 0;
-      border-bottom: 1px dashed #D3D3D3;
-    }
-
-    .note-meta {
-      width: 80px;
-      flex-shrink: 0;
-      font-family: var(--font-main-serif);
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    .note-meta span {
-      display: block;
-    }
-
-    .note-content-box {
-      flex: 1;
-      padding-left: 1rem;
-    }
-
-    /* ── Library Section ──────────────────────────────────── */
-    .library-shelf {
-      margin-bottom: 2.5rem;
-    }
-
-    .shelf-category {
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      font-weight: bold;
-      margin-bottom: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .book-item {
-      padding: 0.5rem 0;
-      border-bottom: 1px dashed var(--border);
-      font-size: 1.1rem;
-    }
-
-    /* ── Footer ───────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 0 3rem;
-    }
-
-    .subscribe-eyebrow {
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.65rem;
-    }
-
-    .subscribe-row {
-      display: flex;
-      max-width: 360px;
-      margin-bottom: 2rem;
-    }
-
-    .subscribe-input {
-      flex: 1;
-      background: #FFFFFF;
-      border: 1px solid #252525;
-      border-right: none;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.85rem;
-      outline: none;
-    }
-
-    .subscribe-btn {
-      background: #FFFFFF;
-      border: 1px solid #252525;
-      color: #333333;
-      padding: 0.5rem 1.1rem;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-
-    .subscribe-btn:hover {
-      background: #1F1F1F;
-      color: #FFFFFF;
-    }
-
-    .footer-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.25rem;
-      color: var(--text-muted);
-    }
-
-    .footer-links a {
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-      text-decoration: underline;
-    }
-  </style>
+        /* Marquee animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-brand-bg text-brand-cream font-sans antialiased bg-grain selection:bg-brand-burgundy selection:text-white min-h-screen flex flex-col justify-between">
 
-  <div class="container">
-    <!-- ── Site Header ────────────────────────────────────── -->
-    <header class="site-header">
-      <a href="#home" onclick="switchPage('home')" class="site-brand">SUYODHANA</a>
-      <div class="site-tagline">Politics, Culture, Nationalism, and the Study of Society</div>
+    <!-- TOP TICKER BAR -->
+    <div class="border-b border-editorial text-[10px] tracking-[0.2em] uppercase py-2 bg-black/40 text-brand-muted overflow-hidden">
+        <div class="animate-marquee flex gap-12 items-center">
+            <span>ISSUE NO. 14 — AUTUMN / WINTER 2026</span>
+            <span class="text-brand-burgundy font-bold">•</span>
+            <span>A JOURNAL OF CINEMA, CULTURE & PHILOSOPHY BY AHMAN</span>
+            <span class="text-brand-burgundy font-bold">•</span>
+            <span>FEATURED ESSAY: THE ART OF LOOKING</span>
+            <span class="text-brand-burgundy font-bold">•</span>
+            <span>NEW FILM REVIEWS: ZONE OF INTEREST, PAST LIVES, PERFECT DAYS</span>
+            <span class="text-brand-burgundy font-bold">•</span>
+            <span>ISSUE NO. 14 — AUTUMN / WINTER 2026</span>
+            <span class="text-brand-burgundy font-bold">•</span>
+            <span>A JOURNAL OF CINEMA, CULTURE & PHILOSOPHY BY AHMAN</span>
+        </div>
+    </div>
+
+    <!-- MAIN EDITORIAL MASTHEAD & NAV -->
+    <header class="sticky top-0 z-40 bg-brand-bg/95 backdrop-blur-md border-b border-editorial">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-6 flex flex-col md:flex-row md:items-end justify-between border-b border-editorial/40 pb-5">
+                <!-- Date / Issue colophon -->
+                <div class="hidden md:block text-xs font-mono tracking-widest text-brand-muted uppercase">
+                    <div>VOL. XIV — EDITION 2026</div>
+                    <div class="text-[10px] text-brand-burgundyLight mt-0.5">INDEPENDENT PUBLICATION</div>
+                </div>
+
+                <!-- Main Wordmark -->
+                <div class="text-center md:text-center">
+                    <a href="#" onclick="showHomeView(); return false;" class="group inline-block">
+                        <h1 class="font-serif text-4xl sm:text-6xl tracking-tight uppercase font-extrabold text-brand-cream group-hover:text-brand-burgundyLight transition-colors duration-300">
+                            CINEREVIEW
+                        </h1>
+                    </a>
+                </div>
+
+                <!-- Subheadline Tag -->
+                <div class="hidden md:block text-right text-xs font-mono tracking-widest text-brand-muted uppercase">
+                    <div>BY AHMAN</div>
+                    <div class="text-[10px] text-brand-cream/60 mt-0.5">PARIS / TOKYO / NY</div>
+                </div>
+            </div>
+
+            <!-- Navigation Bar -->
+            <div class="py-3 flex items-center justify-between">
+                <nav class="hidden md:flex space-x-8 text-xs font-medium tracking-[0.18em] uppercase">
+                    <a href="#" onclick="showHomeView(); return false;" class="text-brand-cream hover:text-brand-burgundyLight transition-colors">Home</a>
+                    <a href="#films" onclick="showHomeView(); showSection('films');" class="text-brand-muted hover:text-brand-cream transition-colors">Films</a>
+                    <a href="#essays" onclick="showHomeView(); showSection('essays');" class="text-brand-muted hover:text-brand-cream transition-colors">Essays</a>
+                    <a href="#culture" onclick="showHomeView(); showSection('culture');" class="text-brand-muted hover:text-brand-cream transition-colors">Culture</a>
+                    <a href="#notes" onclick="showHomeView(); showSection('notes');" class="text-brand-muted hover:text-brand-cream transition-colors">Notes</a>
+                    <a href="#about" onclick="showHomeView(); showSection('about');" class="text-brand-muted hover:text-brand-cream transition-colors">About</a>
+                </nav>
+
+                <div class="flex items-center space-x-4 ml-auto md:ml-0">
+                    <button onclick="scrollToNewsletter()" class="text-xs font-medium tracking-wider uppercase px-4 py-2 border border-brand-burgundy text-brand-cream hover:bg-brand-burgundy transition-all duration-300 rounded-sm">
+                        Subscribe
+                    </button>
+                    <button onclick="scrollToSupport()" class="text-xs font-medium tracking-wider uppercase px-4 py-2 bg-brand-cream text-brand-bg hover:bg-brand-gold transition-all duration-300 font-semibold rounded-sm hidden sm:block">
+                        Buy Coffee
+                    </button>
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-brand-cream focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="hamburgerIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-editorial space-y-3 text-xs tracking-widest uppercase">
+                <a href="#" onclick="showHomeView(); toggleMobileMenu(); return false;" class="block text-brand-cream py-1">Home</a>
+                <a href="#films" onclick="showHomeView(); showSection('films'); toggleMobileMenu();" class="block text-brand-muted hover:text-brand-cream py-1">Films</a>
+                <a href="#essays" onclick="showHomeView(); showSection('essays'); toggleMobileMenu();" class="block text-brand-muted hover:text-brand-cream py-1">Essays</a>
+                <a href="#culture" onclick="showHomeView(); showSection('culture'); toggleMobileMenu();" class="block text-brand-muted hover:text-brand-cream py-1">Culture</a>
+                <a href="#notes" onclick="showHomeView(); showSection('notes'); toggleMobileMenu();" class="block text-brand-muted hover:text-brand-cream py-1">Notes</a>
+                <a href="#about" onclick="showHomeView(); showSection('about'); toggleMobileMenu();" class="block text-brand-muted hover:text-brand-cream py-1">About Ahman</a>
+            </div>
+        </div>
     </header>
 
-    <!-- ── Core Navigation ────────────────────────────────── -->
-    <nav class="site-nav" aria-label="Main">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="#home" class="nav-link active" onclick="switchPage('home')">HOME</a></li>
-        <li class="nav-item"><span class="nav-slash">/</span><a href="#essays" class="nav-link" onclick="switchPage('essays')">ESSAYS</a></li>
-        <li class="nav-item"><span class="nav-slash">/</span><a href="#research" class="nav-link" onclick="switchPage('research')">RESEARCH</a></li>
-        <li class="nav-item"><span class="nav-slash">/</span><a href="#notes" class="nav-link" onclick="switchPage('notes')">NOTES</a></li>
-        <li class="nav-item"><span class="nav-slash">/</span><a href="#library" class="nav-link" onclick="switchPage('library')">LIBRARY</a></li>
-        <li class="nav-item"><span class="nav-slash">/</span><a href="#about" class="nav-link" onclick="switchPage('about')">ABOUT</a></li>
-      </ul>
-    </nav>
-
-    <!-- ── Main Dynamic Content Window ───────────────────── -->
-    <main>
-
-      <!-- 🏠 HOME PAGE VIEW -->
-      <section id="home-page" class="content-page active-page">
-        <h1 class="section-title" style="margin-top: 0; font-size: 1.6rem;">
-          Politics, Culture, Nationalism, and the Study of Society.
-        </h1>
-        <p>Welcome to my personal architecture. This space serves as an independent repository for long-form inquiries into the structural history, political philosophy, and cultural currents shaping society.</p>
-
-        <h2 class="section-title">Browse Content by Topic:</h2>
-        <div class="topic-container">
-          <span class="topic-trigger" onclick="switchPage('essays')">Nationalism</span> •
-          <span class="topic-trigger" onclick="switchPage('essays')">Political Thought</span> •
-          <span class="topic-trigger" onclick="switchPage('research')">Bangladesh</span> •
-          <span class="topic-trigger" onclick="switchPage('research')">History</span> •
-          <span class="topic-trigger" onclick="switchPage('essays')">Anthropology</span> •
-          <span class="topic-trigger" onclick="switchPage('essays')">Culture</span> •
-          <span class="topic-trigger" onclick="switchPage('research')">Law</span> •
-          <span class="topic-trigger" onclick="switchPage('research')">Education</span>
-        </div>
-
-        <h2 class="section-title">Featured Essays</h2>
-        <div class="post-list">
-          <div class="post-row">
-            <div class="post-meta-left">05/24</div>
-            <div class="post-content-right">
-              <a href="#" class="post-title-link">Sovereignty of Intent: Designing Interfaces for Deep Human Work</a>
-              <div class="post-summary">An analytical inquiry into technological clutter and how information scarcity preserves cognitive synthesis.</div>
-            </div>
-          </div>
-        </div>
-
-        <h2 class="section-title">Recent Research</h2>
-        <div class="post-list">
-          <div class="post-row">
-            <div class="post-meta-left">03/24</div>
-            <div class="post-content-right">
-              <a href="#" class="post-title-link">The Evolution of Constitutionalism and Local Governance Regimes</a>
-              <div class="post-summary">Tracing structural transitions within statutory models and administrative law parameters.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ✒️ ESSAYS PAGE VIEW (Preserved Monospace Architecture style) -->
-      <section id="essays-page" class="content-page">
-        <h2 class="section-title" style="margin-top: 0;">Long-Form Essays</h2>
-        <div class="essays-archive">
-          <div class="essay-row"><a href="#" class="essay-anchor">What matters</a><span class="essay-date-right">2026/05/20</span></div>
-          <div class="essay-row"><a href="#" class="essay-anchor">Be careful what you make easy</a><span class="essay-date-right">2026/05/19</span></div>
-          <div class="essay-row"><a href="#" class="essay-anchor">Screen record more</a><span class="essay-date-right">2026/05/17</span></div>
-          <div class="essay-row"><a href="#" class="essay-anchor">Buttondown no longer runs Revue imports automatically</a><span class="essay-date-right">2026/05/15</span></div>
-          <div class="essay-row"><a href="#" class="essay-anchor">Just aim the cannon correctly</a><span class="essay-date-right">2026/05/14</span></div>
-          <div class="essay-row"><a href="#" class="essay-anchor">LLMs and Buttondown</a><span class="essay-date-right">2026/05/12</span></div>
-        </div>
-      </section>
-
-      <!-- 🔬 🎯 RESEARCH PAGE VIEW (Exact Style Replication of Image 1000044510.png) -->
-      <section id="research-page" class="content-page">
-        <h2 class="section-title" style="margin-top: 0;">Research Projects & Papers</h2>
+    <!-- MAIN VIEW CONTAINER (HOMEPAGE) -->
+    <main id="homeView" class="view-section flex-grow">
         
-        <ul class="research-bullet-list">
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">April 9th, 2026: </span>
-            <a href="#" class="research-link-anchor">"The Structural Geopolitics of the Bengal Delta Basin" is out!</a>
-          </li>
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">December 30th, 2025: </span>
-            <a href="#" class="research-link-anchor">Interpreters and Constitutional Jurisprudence everywhere!</a>
-          </li>
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">November 20th, 2025: </span>
-            <a href="#" class="research-link-anchor">Where administrative "simulation" came from</a>
-          </li>
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">June 29th, 2025: </span>
-            <a href="#" class="research-link-anchor">"Agrarian Border Systems and Statutory Shifts" will appear at ILS 2025</a>
-          </li>
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">December 31st, 2024: </span>
-            <a href="#" class="research-link-anchor">Historical Evolution of Water Distribution Treaty Parameters</a>
-          </li>
-          <li class="research-bullet-item">
-            <span class="research-date-prefix">September 22nd, 2024: </span>
-            <a href="#" class="research-link-anchor">When is localized governance not enough for systemic stability?</a>
-          </li>
-        </ul>
-      </section>
+        <!-- HERO SECTION -->
+        <section class="border-b border-editorial py-12 md:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Text Content Left -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 text-brand-burgundyLight text-xs tracking-widest uppercase font-mono border-b border-brand-burgundy/40 pb-1">
+                            <span class="w-2 h-2 rounded-full bg-brand-burgundyLight animate-pulse"></span>
+                            <span>WORDS & PERSPECTIVES BY AHMAN</span>
+                        </div>
+                        
+                        <h2 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-brand-cream leading-[0.95]">
+                            Cinema is <br><span class="italic font-light text-brand-cream/80">only the</span> beginning.
+                        </h2>
+                        
+                        <p class="text-base sm:text-lg text-brand-muted max-w-xl leading-relaxed font-light">
+                            A personal space for films, ideas, culture, and everything in between. Exploring how moving images reflect our philosophical dilemmas, aesthetic desires, and human condition.
+                        </p>
 
-      <!-- 🌱 NOTES PAGE VIEW -->
-      <section id="notes-page" class="content-page">
-        <p style="font-weight: bold; margin-bottom: 2rem;">And here are all of my other posts.</p>
-        <div class="notes-container">
-          <div class="note-row">
-            <div class="note-meta"><span>May 08,</span><span>2026</span></div>
-            <div class="note-content-box"><a href="#" class="post-title-link">Twelve years</a></div>
-          </div>
-          <div class="note-row">
-            <div class="note-meta"><span>Jan 11,</span><span>2026</span></div>
-            <div class="note-content-box"><a href="#" class="post-title-link">Goodbye 2025</a></div>
-          </div>
-        </div>
-      </section>
+                        <div class="pt-4 flex items-center space-x-6 text-xs font-mono tracking-widest uppercase">
+                            <button onclick="openArticle('hero')" class="inline-flex items-center space-x-3 text-brand-cream hover:text-brand-burgundyLight transition-colors group">
+                                <span class="border-b border-brand-cream group-hover:border-brand-burgundyLight pb-0.5">READ LATEST JOURNAL ENTRY</span>
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                            <span class="text-brand-muted/40">|</span>
+                            <span class="text-brand-muted">EST. 2026</span>
+                        </div>
+                    </div>
 
-      <!-- 📚 LIBRARY PAGE VIEW -->
-      <section id="library-page" class="content-page">
-        <h2 class="section-title" style="margin-top: 0;">Knowledge Repository</h2>
-        <div class="library-shelf">
-          <div class="shelf-category">Political Philosophy & State Theory</div>
-          <div class="book-item"><a href="#">The Concept of the Political</a> — Carl Schmitt</div>
-          <div class="book-item"><a href="#">Imagined Communities</a> — Benedict Anderson</div>
-        </div>
-      </section>
+                    <!-- Visual Layering Right -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative z-10 img-zoom-container rounded-sm border border-editorial shadow-2xl overflow-hidden bg-brand-card">
+                            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=80" alt="Cinematic Projector Light" class="w-full h-[380px] sm:h-[460px] object-cover filter grayscale contrast-125 hover:grayscale-0">
+                            <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black via-black/60 to-transparent">
+                                <span class="text-[10px] font-mono tracking-widest text-brand-gold uppercase block mb-1">STILL NO. 094</span>
+                                <p class="font-serif italic text-sm text-brand-cream">"Light passing through celluloid, turning shadows into memory."</p>
+                            </div>
+                        </div>
+                        <!-- Backdrop visual accents -->
+                        <div class="absolute -top-4 -right-4 w-full h-full border border-brand-burgundy/30 -z-10 rounded-sm hidden sm:block"></div>
+                        <div class="absolute top-1/2 -left-12 text- stroke text-7xl font-serif italic -z-10 opacity-20 pointer-events-none select-none hidden lg:block">
+                            CINE
+                        </div>
+                    </div>
 
-      <!-- 👤 ABOUT PAGE VIEW -->
-      <section id="about-page" class="content-page">
-        <h2 class="section-title" style="margin-top: 0;">About & Intellectual Journey</h2>
-        <p>I am an independent researcher and writer tracking the intersections of nationalism, cultural evolution, and political theory.</p>
-      </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED STORY SECTION -->
+        <section class="border-b border-editorial py-16 bg-brand-card/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-8 border-b border-editorial/40 pb-4">
+                    <h3 class="text-xs font-mono tracking-widest text-brand-burgundyLight uppercase flex items-center gap-2">
+                        <span>◆</span> FEATURED COVER STORY
+                    </h3>
+                    <span class="text-xs font-mono text-brand-muted">READING TIME: 12 MIN</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="img-zoom-container rounded-sm border border-editorial cursor-pointer" onclick="openArticle('featured')">
+                            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1200&q=80" alt="Featured Film Cinema Hall" class="w-full h-[320px] sm:h-[480px] object-cover">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-5">
+                        <div class="flex items-center space-x-3 text-xs font-mono text-brand-muted">
+                            <span class="px-2 py-0.5 border border-brand-burgundy text-brand-burgundyLight uppercase text-[10px] tracking-wider">FILM ESSAY</span>
+                            <span>OCTOBER 28, 2026</span>
+                        </div>
+
+                        <h2 onclick="openArticle('featured')" class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-brand-cream hover:text-brand-burgundyLight transition-colors cursor-pointer leading-tight">
+                            The Art of Looking: What Cinema Teaches Us About Being Human
+                        </h2>
+
+                        <p class="text-brand-muted text-sm sm:text-base leading-relaxed font-light">
+                            In an age of hyper-speed digital consumption, true cinematic observation demands patience. We analyze how director Tarkovsky and modern masters use silence, spatial duration, and stillness to reconstruct our fragmented inner worlds.
+                        </p>
+
+                        <div class="pt-2">
+                            <button onclick="openArticle('featured')" class="inline-flex items-center space-x-2 text-xs font-mono tracking-widest uppercase text-brand-cream border-b border-brand-cream hover:border-brand-burgundyLight hover:text-brand-burgundyLight transition-colors pb-1">
+                                <span>READ FULL ESSAY</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LATEST WRITING GRID (6 dynamic cards) -->
+        <section class="border-b border-editorial py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-12 border-b border-editorial pb-4">
+                    <div>
+                        <h3 class="font-serif text-2xl sm:text-3xl text-brand-cream font-normal">Latest Writing</h3>
+                        <p class="text-xs font-mono text-brand-muted mt-1 uppercase tracking-wider">Essays, Reviews, Notes & Observations</p>
+                    </div>
+                    <span class="text-xs font-mono text-brand-muted hidden sm:inline-block">6 ARTICLES IN THIS EDITION</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Article Card 1 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('zone-of-interest')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=700&q=80" alt="Zone of Interest Still" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-burgundyLight uppercase tracking-wider">FILM REVIEW</span>
+                                <span>7 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                The Banal Horror of Auditory Architecture in Glazer’s Masterpiece
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                Analyzing how Jonathan Glazer uses off-screen sound design to create an unseen nightmare that reverberates far beyond the screen edge.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 2 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('past-lives')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=700&q=80" alt="Past Lives Still" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-burgundyLight uppercase tracking-wider">FILM ESSAY</span>
+                                <span>9 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                In-Yun and the Geometry of Unfulfilled Longing
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                Celine Song’s directorial debut is not about love lost, but about the parallel lives we leave behind in the wake of choices we never made.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 3 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('literature')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=700&q=80" alt="Books and coffee" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-gold uppercase tracking-wider">LITERATURE</span>
+                                <span>14 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                Reading Sebald in the Age of Digital Amnesia
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                W.G. Sebald’s wanderings through history offer a remedy for our modern fragmented attention span. A reflection on memory, prose, and visual collage.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 4 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('culture')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80" alt="Modernist architecture" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-gold uppercase tracking-wider">CULTURE</span>
+                                <span>6 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                Concrete Dreams: Brutalism and Cinematic Isolation
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                Why contemporary directors keep turning to post-war concrete architecture to stage modern existential alienation.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 5 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('perfect-days')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=700&q=80" alt="Tokyo urban scene" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-burgundyLight uppercase tracking-wider">FILM REVIEW</span>
+                                <span>8 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                Wim Wenders & The Sacred Ritual of Daily Routine
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                *Perfect Days* proves that peace is not an absence of struggle, but a deliberate act of quiet reverence toward the mundane.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 6 -->
+                    <article class="bg-brand-card rounded-sm border border-brand-cardBorder p-5 flex flex-col justify-between hover:border-brand-burgundy/60 transition-all duration-300 group cursor-pointer" onclick="openArticle('notes')">
+                        <div class="space-y-4">
+                            <div class="img-zoom-container rounded-sm h-48 overflow-hidden border border-editorial/50">
+                                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=700&q=80" alt="Camera lens blur" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0">
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                                <span class="text-brand-cream/60 uppercase tracking-wider">PERSONAL NOTES</span>
+                                <span>5 MIN READ</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors leading-snug">
+                                Notebook Entries: Grain, Light, and Midnight Screenings
+                            </h4>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light line-clamp-3">
+                                Brief fragments on 35mm prints in revival theaters, forgotten film soundtracks, and rain on cinema rooftops.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-editorial/40 flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                            <span>BY AHMAN</span>
+                            <span class="group-hover:translate-x-1 transition-transform">READ →</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DEDICATED FILM REVIEWS SECTION -->
+        <section id="films" class="border-b border-editorial py-20 bg-black/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-editorial pb-4">
+                    <div>
+                        <span class="text-xs font-mono text-brand-burgundyLight tracking-widest uppercase block mb-1">CINEMATIC ARCHIVE</span>
+                        <h2 class="font-serif text-3xl sm:text-5xl text-brand-cream font-normal">Recent Film Analyses</h2>
+                    </div>
+                    <p class="text-xs font-mono text-brand-muted mt-2 md:mt-0 max-w-xs">
+                        Reframing modern releases through structural composition, soundscapes, and thematic weight.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Film 1 -->
+                    <div class="group cursor-pointer" onclick="openArticle('zone-of-interest')">
+                        <div class="img-zoom-container rounded-sm border border-editorial mb-4 relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Zone of Interest Review Still" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-brand-bg/90 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono tracking-widest text-brand-cream border border-editorial uppercase">
+                                J. GLAZER (2023)
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-[10px] font-mono text-brand-burgundyLight tracking-widest uppercase">REVIEW ARTICLE</div>
+                            <h3 class="font-serif text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors">The Zone of Interest</h3>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                "An indelible portrait of compartmentalized guilt and domestic tranquility bordering on hell."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Film 2 -->
+                    <div class="group cursor-pointer" onclick="openArticle('past-lives')">
+                        <div class="img-zoom-container rounded-sm border border-editorial mb-4 relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=800&q=80" alt="Past Lives Review Still" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-brand-bg/90 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono tracking-widest text-brand-cream border border-editorial uppercase">
+                                C. SONG (2023)
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-[10px] font-mono text-brand-burgundyLight tracking-widest uppercase">REVIEW ARTICLE</div>
+                            <h3 class="font-serif text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors">Past Lives</h3>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                "A quiet masterpiece navigating fate, diaspora, and the ghosts of potential selfhood."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Film 3 -->
+                    <div class="group cursor-pointer" onclick="openArticle('perfect-days')">
+                        <div class="img-zoom-container rounded-sm border border-editorial mb-4 relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80" alt="Perfect Days Review Still" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-brand-bg/90 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono tracking-widest text-brand-cream border border-editorial uppercase">
+                                W. WENDERS (2023)
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-[10px] font-mono text-brand-burgundyLight tracking-widest uppercase">REVIEW ARTICLE</div>
+                            <h3 class="font-serif text-2xl text-brand-cream group-hover:text-brand-burgundyLight transition-colors">Perfect Days</h3>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                "Koji Yakusho delivers a masterclass in subtlety and gratitude amidst the Tokyo cityscape."
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BEYOND CINEMA (CULTURE, LITERATURE, ART) -->
+        <section id="essays" class="border-b border-editorial py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-4 space-y-6">
+                        <span class="text-xs font-mono text-brand-gold tracking-widest uppercase">EXPANDED PERSPECTIVES</span>
+                        <h2 class="font-serif text-4xl sm:text-5xl text-brand-cream leading-tight">
+                            Beyond Cinema
+                        </h2>
+                        <p class="text-sm text-brand-muted leading-relaxed font-light">
+                            Film does not exist in a vacuum. Ahman’s writing bridges cinema with modern literature, visual arts, architectural philosophy, and cultural commentary.
+                        </p>
+                        <div class="pt-2">
+                            <a href="#about" onclick="showSection('about')" class="inline-flex items-center space-x-2 text-xs font-mono tracking-widest text-brand-gold uppercase border-b border-brand-gold pb-1 hover:text-brand-cream transition-colors">
+                                <span>EXPLORE ESSAYS ARCHIVE</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="p-6 bg-brand-card rounded-sm border border-brand-cardBorder space-y-3 hover:border-brand-gold/40 transition-colors">
+                            <div class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">LITERATURE & THEORY</div>
+                            <h4 class="font-serif text-xl text-brand-cream">The Architecture of Silence</h4>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                How writers from Susan Sontag to Blanchot approach the unspoken thresholds of narrative prose.
+                            </p>
+                        </div>
+
+                        <div class="p-6 bg-brand-card rounded-sm border border-brand-cardBorder space-y-3 hover:border-brand-gold/40 transition-colors">
+                            <div class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">VISUAL CULTURE</div>
+                            <h4 class="font-serif text-xl text-brand-cream">Chiaroscuro in Modern Noir</h4>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                From Caravaggio to Gordon Willis: tracking shadow play in digital cinematography.
+                            </p>
+                        </div>
+
+                        <div class="p-6 bg-brand-card rounded-sm border border-brand-cardBorder space-y-3 hover:border-brand-gold/40 transition-colors">
+                            <div class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">PHILOSOPHY</div>
+                            <h4 class="font-serif text-xl text-brand-cream">Temporal Melancholia</h4>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                Examining our obsession with nostalgic film stock and synthetic vintage aesthetics.
+                            </p>
+                        </div>
+
+                        <div class="p-6 bg-brand-card rounded-sm border border-brand-cardBorder space-y-3 hover:border-brand-gold/40 transition-colors">
+                            <div class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">OBSERVATIONS</div>
+                            <h4 class="font-serif text-xl text-brand-cream">The Solitary Flâneur</h4>
+                            <p class="text-xs text-brand-muted font-light leading-relaxed">
+                                Walking through metropolis neon lights with a camera, a pocket notebook, and open eyes.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PERSONAL INTRODUCTION (AHMAN) -->
+        <section id="about" class="border-b border-editorial py-20 bg-brand-card/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto border border-editorial p-8 sm:p-12 relative bg-brand-card">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-4">
+                            <div class="img-zoom-container rounded-sm border border-editorial aspect-square">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Ahman Writer Portrait" class="w-full h-full object-cover filter grayscale">
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-4">
+                            <div class="text-xs font-mono text-brand-burgundyLight tracking-widest uppercase">ABOUT THE AUTHOR</div>
+                            <h3 class="font-serif text-3xl sm:text-4xl text-brand-cream font-normal">Ahman</h3>
+                            <p class="text-sm sm:text-base text-brand-cream/90 leading-relaxed font-light">
+                                Ahman is an independent writer interested in cinema, literature, art, culture, and the ideas that shape our understanding of the world.
+                            </p>
+                            <p class="text-xs text-brand-muted leading-relaxed font-light">
+                                Based between Europe and Asia, his essays examine the intersection of image-making and human consciousness. CINEREVIEW is his personal digital archive and independent publishing portal.
+                            </p>
+                            <div class="pt-2">
+                                <a href="#newsletter" class="text-xs font-mono tracking-widest text-brand-burgundyLight border-b border-brand-burgundyLight pb-0.5 hover:text-brand-cream transition-colors">
+                                    GET IN TOUCH / READ LETTERS →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER ("LETTERS FROM AHMAN") & SUPPORT -->
+        <section id="newsletter" class="py-20 border-b border-editorial">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Newsletter Box -->
+                    <div class="lg:col-span-7 bg-brand-card border border-brand-cardBorder p-8 sm:p-10 space-y-6">
+                        <div>
+                            <span class="text-xs font-mono text-brand-burgundyLight tracking-widest uppercase block mb-1">CORRESPONDENCE</span>
+                            <h3 class="font-serif text-3xl text-brand-cream font-normal">Letters from Ahman</h3>
+                            <p class="text-xs sm:text-sm text-brand-muted font-light mt-2 leading-relaxed">
+                                Occasional writing, new essays, film discoveries, and interesting things worth sharing directly in your inbox. No spam or commercial promotions.
+                            </p>
+                        </div>
+
+                        <form id="newsletterForm" onsubmit="handleSubscribe(event)" class="space-y-4">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input type="email" id="emailInput" placeholder="Enter your email address..." required class="bg-brand-bg border border-editorial text-brand-cream text-xs px-4 py-3 rounded-sm focus:outline-none focus:border-brand-burgundyLight flex-grow font-mono">
+                                <button type="submit" class="bg-brand-burgundy text-brand-cream text-xs font-mono uppercase tracking-widest px-6 py-3 hover:bg-brand-burgundyLight transition-colors rounded-sm whitespace-nowrap">
+                                    Subscribe
+                                </button>
+                            </div>
+                            <div id="subscribeSuccess" class="hidden text-xs font-mono text-emerald-400">
+                                ✓ Thank you for subscribing. Welcome to the reader circle.
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Buy Me A Coffee / Support Box -->
+                    <div id="support" class="lg:col-span-5 bg-brand-card/40 border border-brand-cardBorder p-8 sm:p-10 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <span class="text-xs font-mono text-brand-gold tracking-widest uppercase block">PATRONAGE</span>
+                            <h3 class="font-serif text-3xl text-brand-cream font-normal">Support Independent Writing</h3>
+                            <p class="text-xs sm:text-sm text-brand-muted font-light leading-relaxed">
+                                If you enjoy reading my work, consider buying me a coffee. Your support helps keep this independent creative space alive without ads or corporate sponsors.
+                            </p>
+                        </div>
+
+                        <div>
+                            <button onclick="handleCoffee()" class="w-full bg-brand-cream text-brand-bg text-xs font-mono uppercase tracking-widest px-6 py-3.5 hover:bg-brand-gold transition-all duration-300 rounded-sm font-semibold flex items-center justify-center space-x-2">
+                                <span>☕</span>
+                                <span>BUY ME A COFFEE</span>
+                            </button>
+                            <div id="coffeeToast" class="hidden text-center text-xs font-mono text-brand-gold mt-2">
+                                Thank you for supporting independent culture!
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <!-- ── Footer ───────────────────────────────────────────── -->
-    <footer>
-      <p class="subscribe-eyebrow">Stay Updated</p>
-      <div class="subscribe-row">
-        <input type="email" class="subscribe-input" placeholder="you@example.com" aria-label="Email address for newsletter">
-        <button class="subscribe-btn" type="button">Subscribe</button>
-      </div>
-      <div class="footer-meta">
-        <span style="color: var(--text-muted);">© 2026 Suyodhana</span>
-        <div class="footer-links">
-          <a href="#" onclick="switchPage('home')">Archive</a>
-          <a href="#feed.xml">RSS Feed</a>
-          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <!-- ARTICLE READER VIEW (DYNAMIC SINGLE PAGE ARTICLE SHOWCASE) -->
+    <main id="articleView" class="view-section view-hidden flex-grow py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Back Button Navigation Bar -->
+            <div class="mb-8 pb-4 border-b border-editorial flex items-center justify-between">
+                <button onclick="showHomeView()" class="inline-flex items-center space-x-2 text-xs font-mono text-brand-burgundyLight hover:text-brand-cream transition-colors uppercase tracking-widest">
+                    <span>← BACK TO EDITION</span>
+                </button>
+                <div class="text-[10px] font-mono text-brand-muted uppercase">
+                    CINEREVIEW JOURNAL ENTRY
+                </div>
+            </div>
+
+            <!-- Article Header -->
+            <header class="space-y-6 mb-10">
+                <div class="flex items-center space-x-3 text-xs font-mono">
+                    <span id="artCategory" class="px-2.5 py-0.5 border border-brand-burgundy text-brand-burgundyLight uppercase tracking-wider text-[10px]">
+                        FILM ESSAY
+                    </span>
+                    <span class="text-brand-muted">|</span>
+                    <span id="artDate" class="text-brand-muted">OCTOBER 28, 2026</span>
+                    <span class="text-brand-muted">|</span>
+                    <span id="artReadTime" class="text-brand-muted">12 MIN READ</span>
+                </div>
+
+                <h1 id="artTitle" class="font-serif text-4xl sm:text-6xl text-brand-cream font-normal leading-[1.08] tracking-tight">
+                    The Art of Looking: What Cinema Teaches Us About Being Human
+                </h1>
+
+                <p id="artSubtitle" class="text-lg sm:text-xl text-brand-muted font-light leading-relaxed italic font-serif">
+                    In an age of hyper-speed digital consumption, true cinematic observation demands patience and quiet stillness.
+                </p>
+
+                <div class="flex items-center justify-between pt-4 border-t border-editorial/40 text-xs font-mono text-brand-muted">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Ahman" class="w-8 h-8 rounded-full object-cover filter grayscale">
+                        <div>
+                            <div class="text-brand-cream uppercase">BY AHMAN</div>
+                            <div class="text-[10px] text-brand-muted">INDEPENDENT ESSAYIST</div>
+                        </div>
+                    </div>
+                    <button onclick="copyArticleLink()" class="hover:text-brand-cream transition-colors text-[11px] uppercase tracking-wider">
+                        [ SHARE ARTICLE ]
+                    </button>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <div class="mb-12">
+                <div class="border border-editorial rounded-sm overflow-hidden">
+                    <img id="artHeroImg" src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1400&q=80" alt="Cinema Hall Interior" class="w-full h-[350px] sm:h-[500px] object-cover">
+                </div>
+                <div class="text-[11px] font-mono text-brand-muted mt-2 text-right">
+                    PHOTOGRAPHY BY CINEREVIEW ARCHIVE · STILL NO. 104
+                </div>
+            </div>
+
+            <!-- Long-Form Article Body -->
+            <article class="font-articleSerif text-xl sm:text-2xl text-brand-cream/90 leading-relaxed space-y-8 font-light">
+                
+                <p class="drop-cap">
+                    To watch a film is to enter into a quiet agreement with time. In our current digital landscape, where visual content is parsed into micro-durations designed for dopamine extraction, cinema remains one of the last sanctuaries of sustained human attention. When the auditorium lights dim or when we settle into late-night solitude, we surrender our temporal autonomy to another human mind.
+                </p>
+
+                <p>
+                    Consider the framing techniques of Andrei Tarkovsky or Chantal Akerman. They do not hurry the camera to satisfy an impatient viewer. Instead, they force us to confront the screen until the surface level of the image exhausts itself, revealing the emotional resonance underneath. This is what I refer to as <em>The Art of Looking</em>—a deliberate slowing down of optical perception until seeing transforms into feeling.
+                </p>
+
+                <!-- Pull Quote -->
+                <blockquote class="my-10 py-6 px-8 border-l-2 border-brand-burgundyLight bg-brand-card/60 rounded-r-sm font-serif italic text-2xl sm:text-3xl text-brand-cream leading-snug">
+                    "Cinema is not the reproduction of reality, but the sacred architecture of how we remember it."
+                </blockquote>
+
+                <p>
+                    When we analyze recent triumphs in independent filmmaking—from the silent soundscapes of Glazer’s work to the gentle urban rituals of Wim Wenders—we notice a recurring longing: a desire for cinematic spaces that allow us to reflect on our own mortality, relationships, and place in history.
+                </p>
+
+                <!-- Embedded Visual Break -->
+                <div class="my-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="border border-editorial rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Subtle film shadow" class="w-full h-56 object-cover filter grayscale">
+                        <div class="p-3 text-[10px] font-mono text-brand-muted bg-brand-card">FIG 1.0 — SHADOW & PROJECTION DYNAMICS</div>
+                    </div>
+                    <div class="border border-editorial rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Modernist architectural framing" class="w-full h-56 object-cover">
+                        <div class="p-3 text-[10px] font-mono text-brand-muted bg-brand-card">FIG 1.1 — SPATIAL DURATION IN MODERN CINEMA</div>
+                    </div>
+                </div>
+
+                <p>
+                    Ultimately, cinema teaches us that empathy is a discipline. By sitting in darkness and observing the intricacies of another life—their pauses, their glances, their unuttered grief—we practice what it means to be human in a world that so often encourages us to look away.
+                </p>
+                
+            </article>
+
+            <!-- Author Colophon Card -->
+            <div class="mt-16 pt-8 border-t border-editorial bg-brand-card p-6 sm:p-8 rounded-sm">
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 text-center sm:text-left">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Ahman" class="w-16 h-16 rounded-full object-cover filter grayscale border border-brand-burgundyLight">
+                    <div class="space-y-1">
+                        <h4 class="font-serif text-xl text-brand-cream">Written by Ahman</h4>
+                        <p class="text-xs text-brand-muted font-mono leading-relaxed">
+                            Independent writer and culture critic. Founder of CINEREVIEW. Writes regularly on film theory, literature, and art aesthetics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Articles Bar -->
+            <div class="mt-16">
+                <h3 class="text-xs font-mono text-brand-burgundyLight tracking-widest uppercase mb-6">CONTINUE READING</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div onclick="openArticle('zone-of-interest')" class="p-5 bg-brand-card border border-brand-cardBorder rounded-sm cursor-pointer hover:border-brand-burgundy/60 transition-colors">
+                        <div class="text-[10px] font-mono text-brand-burgundyLight uppercase">NEXT ESSAY</div>
+                        <h5 class="font-serif text-lg text-brand-cream mt-1">The Banal Horror of Auditory Architecture</h5>
+                        <span class="text-xs font-mono text-brand-muted mt-2 inline-block">READ ARTICLE →</span>
+                    </div>
+                    <div onclick="openArticle('past-lives')" class="p-5 bg-brand-card border border-brand-cardBorder rounded-sm cursor-pointer hover:border-brand-burgundy/60 transition-colors">
+                        <div class="text-[10px] font-mono text-brand-gold uppercase">RELATED ESSAY</div>
+                        <h5 class="font-serif text-lg text-brand-cream mt-1">In-Yun and the Geometry of Longing</h5>
+                        <span class="text-xs font-mono text-brand-muted mt-2 inline-block">READ ARTICLE →</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="border-t border-editorial bg-black/80 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-editorial/40">
+                
+                <!-- Col 1: Wordmark & Statement -->
+                <div class="md:col-span-5 space-y-4">
+                    <a href="#" onclick="showHomeView(); return false;" class="inline-block">
+                        <span class="font-serif text-3xl tracking-tight uppercase text-brand-cream font-bold">CINEREVIEW</span>
+                    </a>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed max-w-sm">
+                        An independent publication by Ahman dedicated to serious cinema analysis, literary critique, and visual culture. Free from advertisements and algorithmic clutter.
+                    </p>
+                    <div class="text-[10px] font-mono text-brand-burgundyLight uppercase tracking-widest">
+                        ISSUE XIV · AUTUMN/WINTER EDITION
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <div class="text-xs font-mono text-brand-cream uppercase tracking-widest mb-4">SECTIONS</div>
+                    <ul class="space-y-2 text-xs font-mono text-brand-muted">
+                        <li><a href="#" onclick="showHomeView(); return false;" class="hover:text-brand-cream transition-colors">Home Edition</a></li>
+                        <li><a href="#films" onclick="showHomeView(); showSection('films');" class="hover:text-brand-cream transition-colors">Film Reviews</a></li>
+                        <li><a href="#essays" onclick="showHomeView(); showSection('essays');" class="hover:text-brand-cream transition-colors">Essays & Culture</a></li>
+                        <li><a href="#notes" onclick="showHomeView(); showSection('notes');" class="hover:text-brand-cream transition-colors">Personal Notes</a></li>
+                        <li><a href="#about" onclick="showHomeView(); showSection('about');" class="hover:text-brand-cream transition-colors">About Ahman</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Support & Connect -->
+                <div class="md:col-span-4 space-y-3">
+                    <div class="text-xs font-mono text-brand-cream uppercase tracking-widest mb-4">CONNECT & SUPPORT</div>
+                    <ul class="space-y-2 text-xs font-mono text-brand-muted">
+                        <li><a href="#newsletter" onclick="scrollToNewsletter()" class="hover:text-brand-cream transition-colors">Letters from Ahman (Newsletter)</a></li>
+                        <li><a href="#support" onclick="scrollToSupport()" class="hover:text-brand-cream transition-colors">Buy Me a Coffee (Patronage)</a></li>
+                        <li><a href="mailto:contact@cinereview.mock" class="hover:text-brand-cream transition-colors">Editorial Contact</a></li>
+                        <li><a href="#" onclick="return false;" class="hover:text-brand-cream transition-colors">Letterboxd / Twitter / Substack</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-brand-muted/70 space-y-4 sm:space-y-0">
+                <div>© 2026 CINEREVIEW · ALL RIGHTS RESERVED · AHMAN</div>
+                <div>DESIGNED FOR INDEPENDENT CULTURE</div>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <!-- ── JavaScript Routing Engine ────────────────────── -->
-  <script>
-    function switchPage(targetPageId) {
-      const pages = document.querySelectorAll('.content-page');
-      pages.forEach(page => page.classList.remove('active-page'));
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Article Database for Single-Page Application (SPA) Switcher
+        const articleDatabase = {
+            'featured': {
+                title: "The Art of Looking: What Cinema Teaches Us About Being Human",
+                subtitle: "In an age of hyper-speed digital consumption, true cinematic observation demands patience and quiet stillness.",
+                category: "FILM ESSAY",
+                date: "OCTOBER 28, 2026",
+                readTime: "12 MIN READ",
+                image: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1400&q=80"
+            },
+            'hero': {
+                title: "Cinema is Only the Beginning: An Aesthetic Manifesto",
+                subtitle: "Exploring why the frame of a camera is not a boundary, but an opening into human consciousness.",
+                category: "MANIFESTO",
+                date: "NOVEMBER 01, 2026",
+                readTime: "8 MIN READ",
+                image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=80"
+            },
+            'zone-of-interest': {
+                title: "The Banal Horror of Auditory Architecture in Glazer’s Masterpiece",
+                subtitle: "Analyzing how Jonathan Glazer uses off-screen sound design to create an unseen nightmare.",
+                category: "FILM REVIEW",
+                date: "OCTOBER 20, 2026",
+                readTime: "7 MIN READ",
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1400&q=80"
+            },
+            'past-lives': {
+                title: "In-Yun and the Geometry of Unfulfilled Longing",
+                subtitle: "Celine Song’s directorial debut is about the parallel lives we leave behind in the wake of choices.",
+                category: "FILM ESSAY",
+                date: "OCTOBER 14, 2026",
+                readTime: "9 MIN READ",
+                image: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=1400&q=80"
+            },
+            'perfect-days': {
+                title: "Wim Wenders & The Sacred Ritual of Daily Routine",
+                subtitle: "Perfect Days proves that peace is not an absence of struggle, but a deliberate act of quiet reverence.",
+                category: "FILM REVIEW",
+                date: "SEPTEMBER 30, 2026",
+                readTime: "8 MIN READ",
+                image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1400&q=80"
+            },
+            'literature': {
+                title: "Reading Sebald in the Age of Digital Amnesia",
+                subtitle: "W.G. Sebald’s wanderings offer a remedy for our modern fragmented attention span.",
+                category: "LITERATURE",
+                date: "SEPTEMBER 18, 2026",
+                readTime: "14 MIN READ",
+                image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80"
+            },
+            'culture': {
+                title: "Concrete Dreams: Brutalism and Cinematic Isolation",
+                subtitle: "Why contemporary directors keep turning to post-war concrete architecture to stage modern alienation.",
+                category: "CULTURE",
+                date: "SEPTEMBER 05, 2026",
+                readTime: "6 MIN READ",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1400&q=80"
+            },
+            'notes': {
+                title: "Notebook Entries: Grain, Light, and Midnight Screenings",
+                subtitle: "Brief fragments on 35mm prints in revival theaters, forgotten film soundtracks, and rain on cinema rooftops.",
+                category: "PERSONAL NOTES",
+                date: "AUGUST 28, 2026",
+                readTime: "5 MIN READ",
+                image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80"
+            }
+        };
 
-      const activePage = document.getElementById(targetPageId + '-page');
-      if (activePage) {
-        activePage.classList.add('active-page');
-      }
-
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.textContent.toLowerCase() === targetPageId) {
-          link.classList.add('active');
+        // Navigation Switchers
+        function showHomeView() {
+            document.getElementById('articleView').classList.add('view-hidden');
+            document.getElementById('homeView').classList.remove('view-hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      });
 
-      window.scrollTo(0, 0);
-    }
+        function openArticle(articleKey) {
+            const article = articleDatabase[articleKey] || articleDatabase['featured'];
+            
+            // Populate Article Fields
+            document.getElementById('artTitle').innerText = article.title;
+            document.getElementById('artSubtitle').innerText = article.subtitle;
+            document.getElementById('artCategory').innerText = article.category;
+            document.getElementById('artDate').innerText = article.date;
+            document.getElementById('artReadTime').innerText = article.readTime;
+            document.getElementById('artHeroImg').src = article.image;
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const currentHash = window.location.hash.replace('#', '').toLowerCase();
-      const validPages = ['home', 'essays', 'research', 'notes', 'library', 'about'];
-      if (validPages.includes(currentHash)) {
-        switchPage(currentHash);
-      } else {
-        switchPage('home');
-      }
-    });
-  </script>
+            // Switch Views
+            document.getElementById('homeView').classList.add('view-hidden');
+            document.getElementById('articleView').classList.remove('view-hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
+        function showSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Form & Micro-interaction feedback
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const input = document.getElementById('emailInput');
+            const successMsg = document.getElementById('subscribeSuccess');
+            if(input.value) {
+                successMsg.classList.remove('hidden');
+                input.value = '';
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        function handleCoffee() {
+            const coffeeToast = document.getElementById('coffeeToast');
+            coffeeToast.classList.remove('hidden');
+            setTimeout(() => {
+                coffeeToast.classList.add('hidden');
+            }, 4000);
+        }
+
+        function scrollToNewsletter() {
+            showHomeView();
+            setTimeout(() => {
+                showSection('newsletter');
+            }, 100);
+        }
+
+        function scrollToSupport() {
+            showHomeView();
+            setTimeout(() => {
+                showSection('support');
+            }, 100);
+        }
+
+        function copyArticleLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('Article link copied to clipboard.');
+        }
+    </script>
 </body>
 </html>
+```
